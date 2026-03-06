@@ -1,524 +1,328 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Claudia Espósito | Molecular Imaging</title>
-  <meta name="description" content="Claudia Espósito - PhD candidate in molecular imaging, Alzheimer's disease, PET, MRI and translational neuroimaging." />
-  <style>
-    :root {
-      --bg: #0b1020;
-      --bg-soft: #121933;
-      --card: rgba(255, 255, 255, 0.08);
-      --card-border: rgba(255, 255, 255, 0.14);
-      --text: #f5f7ff;
-      --muted: #bcc6e0;
-      --accent: #7c9cff;
-      --accent-2: #73e0c0;
-      --shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
-      --radius: 24px;
-      --max: 1120px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claudia Espósito | Research Interface</title>
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: Inter, Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(124, 156, 255, 0.22), transparent 30%),
-        radial-gradient(circle at 85% 15%, rgba(115, 224, 192, 0.15), transparent 22%),
-        linear-gradient(180deg, #0b1020 0%, #10172d 100%);
-      line-height: 1.65;
-    }
+<style>
 
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
-    .container { width: min(92%, var(--max)); margin: 0 auto; }
+:root{
+--bg:#060913;
+--panel:#0f1426;
+--panel2:#131a33;
+--accent:#6df0ff;
+--accent2:#7c8cff;
+--text:#e6ebff;
+--muted:#9aa7d4;
+}
 
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      backdrop-filter: blur(14px);
-      background: rgba(11, 16, 32, 0.65);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
+*{box-sizing:border-box}
 
-    .nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      padding: 16px 0;
-    }
+body{
+margin:0;
+font-family: "Segoe UI", Arial, sans-serif;
+background:radial-gradient(circle at top,#0f1735,#050812);
+color:var(--text);
+line-height:1.6;
+}
 
-    .brand {
-      font-weight: 800;
-      font-size: 1.05rem;
-      letter-spacing: 0.4px;
-    }
+.container{
+max-width:1100px;
+margin:auto;
+padding:40px 20px;
+}
 
-    .brand span {
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      color: transparent;
-    }
+h1{
+font-size:48px;
+margin-bottom:10px;
+letter-spacing:1px;
+}
 
-    .nav-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
+h2{
+color:var(--accent);
+margin-top:40px;
+}
 
-    .hero {
-      padding: 72px 0 34px;
-    }
+.panel{
+background:var(--panel);
+border:1px solid #1e2a55;
+border-radius:14px;
+padding:25px;
+margin-top:20px;
+box-shadow:0 0 25px rgba(0,0,0,0.6);
+}
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 28px;
-      align-items: center;
-    }
+.hero{
+display:grid;
+grid-template-columns:1fr 300px;
+gap:40px;
+align-items:center;
+}
 
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.12);
-      color: var(--muted);
-      margin-bottom: 18px;
-      font-weight: 600;
-      font-size: 0.92rem;
-    }
+.profilebox{
+background:var(--panel2);
+border:1px solid #1c2550;
+padding:25px;
+border-radius:16px;
+text-align:center;
+}
 
-    h1 {
-      margin: 0 0 18px;
-      font-size: clamp(2.6rem, 6vw, 5rem);
-      line-height: 1.02;
-      letter-spacing: -1.6px;
-    }
+.avatar{
+width:120px;
+height:120px;
+border-radius:12px;
+background:linear-gradient(135deg,var(--accent),var(--accent2));
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:36px;
+font-weight:bold;
+margin:auto;
+margin-bottom:15px;
+}
 
-    .gradient {
-      background: linear-gradient(90deg, #ffffff 0%, #bcd0ff 55%, #88f0d1 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      color: transparent;
-    }
+.tag{
+color:var(--muted);
+font-size:14px;
+}
 
-    .hero p {
-      margin: 0 0 22px;
-      color: var(--muted);
-      font-size: 1.08rem;
-      max-width: 62ch;
-    }
+.buttons a{
+display:inline-block;
+margin:5px;
+padding:8px 14px;
+border-radius:8px;
+background:linear-gradient(90deg,var(--accent),var(--accent2));
+color:#04101a;
+font-weight:bold;
+font-size:13px;
+text-decoration:none;
+}
 
-    .cta-row, .social-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
+.buttons a:hover{
+opacity:0.9
+}
 
-    .cta-row { margin: 26px 0 18px; }
+.stats{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:15px;
+margin-top:20px;
+}
 
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 18px;
-      border-radius: 14px;
-      font-weight: 700;
-      border: 1px solid rgba(255,255,255,0.12);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-    }
+.stat{
+background:var(--panel2);
+padding:15px;
+border-radius:10px;
+border:1px solid #1e2a55;
+text-align:center;
+}
 
-    .button.primary {
-      background: linear-gradient(90deg, var(--accent), #8a84ff);
-      color: white;
-      box-shadow: 0 12px 30px rgba(124, 156, 255, 0.32);
-      border: none;
-    }
+.stat strong{
+font-size:18px;
+display:block;
+}
 
-    .button.secondary {
-      background: rgba(255,255,255,0.06);
-      color: var(--text);
-    }
+.skillgrid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+margin-top:15px;
+}
 
-    .button:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow);
-    }
+.skill{
+background:var(--panel2);
+padding:15px;
+border-radius:10px;
+border:1px solid #1e2a55;
+}
 
-    .social-pill {
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
+.pub{
+background:var(--panel2);
+padding:15px;
+border-radius:10px;
+border:1px solid #1e2a55;
+margin-top:10px;
+}
 
-    .hero-card {
-      position: relative;
-      padding: 26px;
-      border-radius: 28px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.11), rgba(255,255,255,0.06));
-      border: 1px solid var(--card-border);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
+.footer{
+margin-top:60px;
+text-align:center;
+color:var(--muted);
+font-size:13px;
+}
 
-    .hero-card::before {
-      content: "";
-      position: absolute;
-      inset: -20% auto auto -20%;
-      width: 170px;
-      height: 170px;
-      background: radial-gradient(circle, rgba(124,156,255,0.28), transparent 70%);
-      pointer-events: none;
-    }
+@media(max-width:850px){
+.hero{grid-template-columns:1fr}
+.stats{grid-template-columns:repeat(2,1fr)}
+.skillgrid{grid-template-columns:1fr}
+}
 
-    .profile-image {
-      width: 120px;
-      height: 120px;
-      border-radius: 24px;
-      background: linear-gradient(135deg, rgba(124,156,255,0.8), rgba(115,224,192,0.7));
-      display: grid;
-      place-items: center;
-      font-size: 2rem;
-      font-weight: 800;
-      margin-bottom: 18px;
-    }
-
-    .hero-card h2 {
-      margin: 0 0 10px;
-      font-size: 1.25rem;
-    }
-
-    .hero-card p { color: var(--muted); margin: 0 0 14px; }
-
-    .stat-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .stat {
-      padding: 14px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 1.05rem;
-      margin-bottom: 4px;
-    }
-
-    .stat span { color: var(--muted); font-size: 0.92rem; }
-
-    section { padding: 28px 0; }
-
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 18px;
-      margin-bottom: 18px;
-    }
-
-    .section-title {
-      margin: 0;
-      font-size: 1.9rem;
-      letter-spacing: -0.6px;
-    }
-
-    .section-intro {
-      color: var(--muted);
-      max-width: 72ch;
-      margin: 0;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .card {
-      padding: 24px;
-      border-radius: 22px;
-      background: var(--card);
-      border: 1px solid var(--card-border);
-      box-shadow: var(--shadow);
-    }
-
-    .card h3 {
-      margin-top: 0;
-      margin-bottom: 10px;
-      font-size: 1.08rem;
-    }
-
-    .muted { color: var(--muted); }
-
-    .highlight-box {
-      padding: 26px;
-      border-radius: 24px;
-      background: linear-gradient(135deg, rgba(124,156,255,0.16), rgba(115,224,192,0.08));
-      border: 1px solid rgba(255,255,255,0.12);
-      box-shadow: var(--shadow);
-    }
-
-    .timeline {
-      display: grid;
-      gap: 16px;
-    }
-
-    .timeline-item {
-      padding: 22px;
-      border-radius: 22px;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.1);
-      box-shadow: var(--shadow);
-    }
-
-    .timeline-item h3 { margin: 0 0 6px; }
-    .timeline-meta { color: var(--muted); font-size: 0.94rem; margin-bottom: 8px; }
-
-    .pub-list { display: grid; gap: 14px; }
-
-    .pub {
-      padding: 18px 20px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .pub strong { display: block; margin-bottom: 4px; }
-
-    .contact-card {
-      padding: 28px;
-      text-align: center;
-      border-radius: 26px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.07));
-      border: 1px solid rgba(255,255,255,0.12);
-      box-shadow: var(--shadow);
-    }
-
-    footer {
-      padding: 34px 0 44px;
-      color: var(--muted);
-      text-align: center;
-      font-size: 0.95rem;
-    }
-
-    @media (max-width: 920px) {
-      .hero-grid, .grid-3 { grid-template-columns: 1fr; }
-      .hero { padding-top: 44px; }
-      .section-head { flex-direction: column; align-items: start; }
-    }
-  </style>
+</style>
 </head>
+
 <body>
-  <header class="topbar">
-    <div class="container nav">
-      <div class="brand">Claudia <span>Espósito</span></div>
-      <nav class="nav-links">
-        <a href="#about">About</a>
-        <a href="#research">Research</a>
-        <a href="#experience">Experience</a>
-        <a href="#publications">Publications</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
 
-  <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <div class="eyebrow">PhD Candidate · Molecular Imaging · Alzheimer's Disease</div>
-          <h1>Imaging <span class="gradient">Alzheimer's disease</span> with rigor, curiosity, and figures people can actually read.</h1>
-          <p>
-            I am a predoctoral researcher at <strong>CIC biomaGUNE</strong> in San Sebastián, working on transthyretin stabilizers as potential disease-modifying strategies for Alzheimer's disease. My research combines PET, MRI, MRS, behavioral testing, and ex vivo analyses in preclinical models.
-          </p>
-          <div class="cta-row">
-            <a class="button primary" href="mailto:claudiaespositozapero@gmail.com">Email me</a>
-            <a class="button secondary" href="#publications">Selected publications</a>
-          </div>
-          <div class="social-row">
-            <a class="social-pill" href="#">Google Scholar</a>
-            <a class="social-pill" href="#">LinkedIn</a>
-            <a class="social-pill" href="#">ORCID</a>
-            <a class="social-pill" href="#">CV</a>
-          </div>
-        </div>
+<div class="container">
 
-        <aside class="hero-card">
-          <div class="profile-image">CE</div>
-          <h2>Quick overview</h2>
-          <p>
-            Pharmacist, molecular imaging researcher, science communication enthusiast, and strong believer that a good figure can save an entire presentation.
-          </p>
-          <div class="stat-grid">
-            <div class="stat">
-              <strong>PET · MRI · MRS</strong>
-              <span>Multimodal neuroimaging</span>
-            </div>
-            <div class="stat">
-              <strong>Alzheimer's disease</strong>
-              <span>Preclinical models</span>
-            </div>
-            <div class="stat">
-              <strong>3 publications</strong>
-              <span>Peer-reviewed papers</span>
-            </div>
-            <div class="stat">
-              <strong>Awards & talks</strong>
-              <span>Conferences and outreach</span>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </section>
+<div class="hero">
 
-    <section id="about">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <h2 class="section-title">About</h2>
-            <p class="section-intro">
-              My work focuses on combining in vivo imaging with molecular and biochemical techniques to better understand neurodegeneration and evaluate novel therapeutic approaches.
-            </p>
-          </div>
-        </div>
+<div>
 
-        <div class="highlight-box">
-          <p style="margin:0; color:var(--text); font-size:1.03rem;">
-            I am currently pursuing a PhD in Synthetic and Industrial Chemistry at CIC biomaGUNE, funded by an FPI predoctoral fellowship. My research explores <strong>transthyretin stabilizers</strong> as potential disease-modifying therapies for Alzheimer's disease using a <strong>multimodal imaging approach</strong>. Before this, I worked in neuropharmacology at the University of Valencia studying the mechanisms of ethanol action in the mesocorticolimbic dopaminergic system.
-          </p>
-        </div>
-      </div>
-    </section>
+<h1>Claudia Espósito</h1>
 
-    <section id="research">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <h2 class="section-title">Research focus</h2>
-            <p class="section-intro">A combination of molecular imaging, neurobiology, and translational questions.</p>
-          </div>
-        </div>
+<p class="tag">PhD Candidate · Molecular Imaging · Alzheimer’s Disease</p>
 
-        <div class="grid-3">
-          <article class="card">
-            <h3>Molecular imaging in Alzheimer's disease</h3>
-            <p class="muted">Longitudinal PET imaging to assess amyloid burden and neuroinflammation in transgenic mouse models.</p>
-          </article>
-          <article class="card">
-            <h3>Multimodal neuroimaging</h3>
-            <p class="muted">MRI and MRS to study structural and metabolic brain changes during disease progression and treatment.</p>
-          </article>
-          <article class="card">
-            <h3>Ex vivo validation and biomarkers</h3>
-            <p class="muted">Immunohistochemistry, ELISA, flow cytometry and cytokine multiplex assays to validate in vivo findings.</p>
-          </article>
-        </div>
-      </div>
-    </section>
+<div class="panel">
 
-    <section id="experience">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <h2 class="section-title">Experience</h2>
-            <p class="section-intro">Research training across molecular imaging, neuropharmacology and science communication.</p>
-          </div>
-        </div>
+<h2>Current Mission</h2>
 
-        <div class="timeline">
-          <div class="timeline-item">
-            <h3>Predoctoral Researcher</h3>
-            <div class="timeline-meta">CIC biomaGUNE · San Sebastián · 2022–present</div>
-            <p class="muted">PhD project on transthyretin stabilizers in Alzheimer's disease, combining PET, MRI, MRS, Barnes Maze, radiochemistry, and ex vivo analyses.</p>
-          </div>
+<p>
+Investigating disease‑modifying strategies for Alzheimer’s disease using multimodal molecular imaging. My research combines PET, MRI and MRS with behavioural and biochemical analyses in preclinical models to understand amyloid pathology and neuroinflammation.
+</p>
 
-          <div class="timeline-item">
-            <h3>Researcher in Neuropharmacology</h3>
-            <div class="timeline-meta">University of Valencia · 2019–2022</div>
-            <p class="muted">Studied the mechanisms of ethanol action in the mesocorticolimbic dopaminergic system through behavioral and neurochemical techniques.</p>
-          </div>
+</div>
 
-          <div class="timeline-item">
-            <h3>Science communication & leadership</h3>
-            <div class="timeline-meta">ySMIN Chair · Outreach · Events</div>
-            <p class="muted">Interested in visual storytelling, scientific communication and building better spaces for early-career researchers in molecular imaging.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+<div class="stats">
 
-    <section id="publications">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <h2 class="section-title">Selected publications</h2>
-            <p class="section-intro">A few peer-reviewed papers from my research trajectory.</p>
-          </div>
-        </div>
+<div class="stat">
+<strong>3+</strong>
+Publications
+</div>
 
-        <div class="pub-list">
-          <div class="pub">
-            <strong>Esposito-Zapero, C. et al.</strong>
-            The rostromedial tegmental nucleus RMTg is not a critical site for ethanol-induced motor activation in rats. <em>Psychopharmacology</em> (2023).
-          </div>
-          <div class="pub">
-            <strong>Fernández-Rodríguez, S.; Cano-Cebrián, M. J.; Esposito-Zapero, C. et al.</strong>
-            N-Acetylcysteine normalizes brain oxidative stress and neuroinflammation observed after protracted ethanol abstinence. <em>Psychopharmacology</em> (2023).
-          </div>
-          <div class="pub">
-            <strong>Fernández-Rodríguez, S.; Esposito-Zapero, C. et al.</strong>
-            The Effects of N-Acetylcysteine on the Rat Mesocorticolimbic Pathway: Role of MGluR5 Receptors and Interaction with Ethanol. <em>Pharmaceuticals</em> (2021).
-          </div>
-        </div>
-      </div>
-    </section>
+<div class="stat">
+<strong>15+</strong>
+Conference works
+</div>
 
-    <section id="contact">
-      <div class="container">
-        <div class="contact-card">
-          <h2 class="section-title" style="margin-top:0;">Contact</h2>
-          <p class="section-intro" style="margin-left:auto; margin-right:auto;">
-            For collaborations, talks, conference activities or research-related conversations, feel free to get in touch.
-          </p>
-          <p>
-            <strong>Email:</strong> <a href="mailto:claudiaespositozapero@gmail.com">claudiaespositozapero@gmail.com</a><br>
-            <strong>Location:</strong> San Sebastián, Spain<br>
-            <strong>LinkedIn:</strong> <a href="#">Add link</a><br>
-            <strong>Google Scholar:</strong> <a href="#">Add link</a><br>
-            <strong>ORCID:</strong> <a href="#">Add link</a>
-          </p>
-        </div>
-      </div>
-    </section>
-  </main>
+<div class="stat">
+<strong>PET / MRI</strong>
+Core methods
+</div>
 
-  <footer>
-    <div class="container">
-      © 2026 Claudia Espósito · Built with curiosity, caffeine, and a suspiciously high number of scans.
-    </div>
-  </footer>
+<div class="stat">
+<strong>2022–</strong>
+PhD project
+</div>
+
+</div>
+
+</div>
+
+<div class="profilebox">
+
+<div class="avatar">CE</div>
+
+<p>
+Predoctoral researcher at
+<br>
+<strong>CIC biomaGUNE</strong>
+<br>
+San Sebastián, Spain
+</p>
+
+<div class="buttons">
+<a href="mailto:claudiaespositozapero@gmail.com">Email</a>
+<a href="#">Scholar</a>
+<a href="#">LinkedIn</a>
+<a href="#">CV</a>
+</div>
+
+</div>
+
+</div>
+
+<div class="panel">
+
+<h2>Skill Tree</h2>
+
+<div class="skillgrid">
+
+<div class="skill">
+<strong>Molecular Imaging</strong>
+<p class="tag">PET imaging of amyloid plaques and neuroinflammation</p>
+</div>
+
+<div class="skill">
+<strong>Multimodal Neuroimaging</strong>
+<p class="tag">MRI and MRS for structural and metabolic brain analysis</p>
+</div>
+
+<div class="skill">
+<strong>Radiochemistry</strong>
+<p class="tag">Radiotracer synthesis, QC and injection</p>
+</div>
+
+<div class="skill">
+<strong>Behavioural assays</strong>
+<p class="tag">Barnes Maze and other cognitive tests</p>
+</div>
+
+<div class="skill">
+<strong>Ex vivo validation</strong>
+<p class="tag">IHC, ELISA, flow cytometry, multiplex cytokines</p>
+</div>
+
+<div class="skill">
+<strong>Scientific communication</strong>
+<p class="tag">Visual storytelling and outreach</p>
+</div>
+
+</div>
+
+</div>
+
+<div class="panel">
+
+<h2>Research Log — Publications</h2>
+
+<div class="pub">
+<strong>Esposito‑Zapero C. et al.</strong>
+The rostromedial tegmental nucleus RMTg is not a critical site for ethanol‑induced motor activation in rats. Psychopharmacology (2023)
+</div>
+
+<div class="pub">
+<strong>Fernández‑Rodríguez S. et al.</strong>
+N‑Acetylcysteine normalizes brain oxidative stress and neuroinflammation observed after protracted ethanol abstinence. Psychopharmacology (2023)
+</div>
+
+<div class="pub">
+<strong>Fernández‑Rodríguez S. et al.</strong>
+The Effects of N‑Acetylcysteine on the Rat Mesocorticolimbic Pathway. Pharmaceuticals (2021)
+</div>
+
+</div>
+
+<div class="panel">
+
+<h2>Achievements Unlocked</h2>
+
+<ul>
+<li>Best Poster Award — EMIM 2025</li>
+<li>Travel Grant — iSRS 2025</li>
+<li>Best Talk Award — PhDay 2024 & 2025</li>
+<li>Group Work Award — TOPIM 2025</li>
+</ul>
+
+</div>
+
+<div class="panel">
+
+<h2>Contact Terminal</h2>
+
+<p>
+Email: claudiaespositozapero@gmail.com
+<br>
+Location: San Sebastián, Spain
+</p>
+
+</div>
+
+<div class="footer">
+Research interface v1.0 · Built with caffeine, curiosity and molecular imaging
+</div>
+
+</div>
+
 </body>
 </html>
