@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Claudia Esposito | Molecular Imaging</title>
+<title>Claudia Espósito | Molecular Imaging</title>
 
 <style>
 
@@ -140,6 +140,155 @@ text-transform:uppercase;
 margin-bottom:6px;
 }
 
+.map-section{
+  margin-top: 24px;
+}
+
+.map-wrapper{
+  position: relative;
+  margin-top: 18px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.map-legend{
+  display:flex;
+  gap:18px;
+  flex-wrap:wrap;
+  margin-bottom:14px;
+  font-size:14px;
+  color:var(--muted);
+}
+
+.legend-item{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.legend-dot{
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  display:inline-block;
+}
+
+.legend-dot.oral{
+  background: var(--accent);
+}
+
+.legend-dot.poster{
+  background: #ffffff;
+  border: 1px solid var(--border);
+}
+
+.world-map{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  border-radius: 12px;
+  background:
+    radial-gradient(circle at 20% 35%, rgba(255,255,255,0.05) 0 10%, transparent 11%),
+    radial-gradient(circle at 30% 40%, rgba(255,255,255,0.04) 0 9%, transparent 10%),
+    radial-gradient(circle at 48% 32%, rgba(255,255,255,0.05) 0 12%, transparent 13%),
+    radial-gradient(circle at 53% 52%, rgba(255,255,255,0.04) 0 11%, transparent 12%),
+    radial-gradient(circle at 76% 42%, rgba(255,255,255,0.05) 0 14%, transparent 15%),
+    radial-gradient(circle at 83% 68%, rgba(255,255,255,0.04) 0 10%, transparent 11%),
+    linear-gradient(180deg, #101014, #0b0b0d);
+  border: 1px solid var(--border);
+}
+
+.map-note{
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.map-point{
+  position:absolute;
+  width:16px;
+  height:16px;
+  border-radius:50%;
+  border:none;
+  cursor:pointer;
+  transform:translate(-50%, -50%);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.map-point:hover{
+  transform:translate(-50%, -50%) scale(1.15);
+}
+
+.map-point.oral{
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(110, 231, 255, 0.14);
+}
+
+.map-point.poster{
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(255,255,255,0.08);
+}
+
+.map-popup{
+  position:absolute;
+  min-width: 240px;
+  max-width: 320px;
+  background: #111114;
+  color: var(--text);
+  border:1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+  display:none;
+  z-index: 5;
+}
+
+.map-popup.active{
+  display:block;
+}
+
+.map-popup h4{
+  margin:0 0 6px 0;
+  font-size:15px;
+}
+
+.map-popup p{
+  margin:0;
+  font-size:14px;
+  color:var(--muted);
+}
+
+.map-popup .popup-type{
+  display:inline-block;
+  margin-bottom:8px;
+  font-size:12px;
+  padding:4px 8px;
+  border-radius:999px;
+  background:#1c1c22;
+  color:var(--text);
+}
+
+.map-popup .popup-close{
+  position:absolute;
+  top:8px;
+  right:10px;
+  background:none;
+  border:none;
+  color:var(--muted);
+  cursor:pointer;
+  font-size:16px;
+}
+
+@media (max-width: 700px){
+  .map-popup{
+    min-width: 200px;
+    max-width: 240px;
+  }
+}
+
 .footer{
 margin-top:70px;
 font-size:13px;
@@ -155,19 +304,17 @@ color:#6b7280;
 
 <div class="header">
 
-<h1>Claudia Esposito</h1>
+<h1>Claudia Espósito</h1>
 
 <div class="subtitle">
-PhD candidate in Molecular Imaging · CIC biomaGUNE (San Sebastián, Spain)
+PhD candidate in Molecular Imaging · CIC biomaGUNE
 </div>
 
 <div class="badges">
 <span class="badge">PET</span>
 <span class="badge">MRI</span>
-<span class="badge">MRS</span>
-<span class="badge">Radiochemistry</span>
 <span class="badge">Alzheimer's research</span>
-<span class="badge">Behavioural tests</span>
+<span class="badge">Radiochemistry</span>
 </div>
 
 <div class="buttons">
@@ -184,7 +331,7 @@ PhD candidate in Molecular Imaging · CIC biomaGUNE (San Sebastián, Spain)
 <div class="gamelabel">Current mission</div>
 
 <p>
-Investigating disease‑modifying strategies for <span class="highlight">Alzheimer’s disease</span> using multimodal molecular imaging. My work combines PET, MRI and MRS with behavioural and biochemical analyses in preclinical AD models.
+Investigating disease‑modifying strategies for <span class="highlight">Alzheimer’s disease</span> using multimodal molecular imaging. My work combines PET, MRI and MRS with behavioural and biochemical analyses in preclinical models.
 </p>
 
 </div>
@@ -195,40 +342,39 @@ Investigating disease‑modifying strategies for <span class="highlight">Alzheim
 <div class="skillgrid">
 
 <div class="skill">
-<strong>Multimodal molecular imaging</strong><br>
-Design and analysis of longitudinal preclinical imaging studies using PET, MRI and MRS.
+<strong>Molecular imaging</strong><br>
+PET imaging of amyloid pathology and neuroinflammation
+</div>
+
+<div class="skill">
+<strong>Multimodal neuroimaging</strong><br>
+MRI and MRS for structural and metabolic brain analysis
 </div>
 
 <div class="skill">
 <strong>Radiochemistry</strong><br>
-Radiotracer synthesis, quality control, dose preparation and intravenous administration.
+Radiotracer synthesis, QC and dose preparation
 </div>
 
 <div class="skill">
 <strong>Behavioural assays</strong><br>
-Behavioural tests, including Open Field and Barnes Maze.
+Barnes Maze and cognitive testing
 </div>
 
 <div class="skill">
-<strong>Biochemical and histological analysis</strong><br>
-Ex vivo validation using immunohistochemistry, ELISA, flow cytometry and multiplex cytokine assays.
-</div>
-
-<div class="skill">
-<strong>Experimental surgery</strong><br>
-Procedures including stereotaxic surgery, intracranial administration, jugular vein cannulation and microdialysis techniques.
+<strong>Ex vivo analysis</strong><br>
+IHC, ELISA, flow cytometry and cytokine panels
 </div>
 
 <div class="skill">
 <strong>Science communication</strong><br>
-Scientific outreach, conference presentations and development of clear data visualisations for effective research communication.
+Data visualisation and outreach
 </div>
 
 </div>
-</div>
 
 
-<h2>Publications</h2>
+<h2>Research log</h2>
 
 <div class="card">
 
@@ -245,97 +391,126 @@ N‑Acetylcysteine normalizes brain oxidative stress and neuroinflammation after
 <div class="pub">
 <strong>Fernández‑Rodríguez S. et al.</strong>
 The Effects of N‑Acetylcysteine on the Rat Mesocorticolimbic Pathway. Pharmaceuticals (2021)
-
-</div>
 </div>
 
-<h2>Conference presentations</h2>
+</div>
 
-<div class="conference-section">
 
-  <div class="conference-block">
-    <div class="gamelabel">🎤 Oral presentations</div>
+<h2>Conference map</h2>
 
-    <div class="conference-item">
-      <div class="conference-year">2025</div>
-      <div class="conference-content">
-        <strong>Modulating Alzheimer’s Pathology with Transthyretin Stabilizers: PET Imaging Insights</strong><br>
-        International Symposium on Radiopharmaceutical Sciences (iSRS) · Gold Coast, Australia
-      </div>
+<div class="map-section">
+  <div class="map-wrapper">
+
+    <div class="map-legend">
+      <div class="legend-item"><span class="legend-dot oral"></span> Oral presentations</div>
+      <div class="legend-item"><span class="legend-dot poster"></span> Poster presentations</div>
     </div>
 
-    <div class="conference-item">
-      <div class="conference-year">2025</div>
-      <div class="conference-content">
-        <strong>Transthyretin stabilization: A novel approach to Alzheimer’s treatment</strong><br>
-        Young Spanish Molecular Imaging Network (ySMIN) · Madrid, Spain
+    <div class="world-map" id="worldMap">
+
+      <button class="map-point oral" style="left:46%; top:31%;" data-popup="popup-ss-oral" aria-label="San Sebastián oral presentation"></button>
+      <button class="map-point poster" style="left:45.5%; top:31.5%;" data-popup="popup-bilbao-poster" aria-label="Bilbao poster presentation"></button>
+      <button class="map-point oral" style="left:45.2%; top:33.4%;" data-popup="popup-madrid-oral" aria-label="Madrid oral presentation"></button>
+      <button class="map-point oral" style="left:44.1%; top:31.8%;" data-popup="popup-porto-oral" aria-label="Porto oral presentation"></button>
+      <button class="map-point oral" style="left:43.3%; top:31.1%;" data-popup="popup-santiago-oral" aria-label="Santiago de Compostela oral presentation"></button>
+      <button class="map-point poster" style="left:45.8%; top:34.4%;" data-popup="popup-granada-poster" aria-label="Granada poster presentation"></button>
+      <button class="map-point poster" style="left:49.4%; top:29.7%;" data-popup="popup-salzburg-poster" aria-label="Salzburg poster presentation"></button>
+      <button class="map-point poster" style="left:52.2%; top:30%;" data-popup="popup-timisoara-poster" aria-label="Timisoara poster presentation"></button>
+      <button class="map-point oral" style="left:84.5%; top:73%;" data-popup="popup-goldcoast-oral" aria-label="Gold Coast oral presentation"></button>
+      <button class="map-point poster" style="left:15.5%; top:42.5%;" data-popup="popup-honolulu-poster" aria-label="Honolulu poster presentation"></button>
+      <button class="map-point poster" style="left:44.8%; top:35.7%;" data-popup="popup-valencia-poster-1" aria-label="Valencia poster presentation"></button>
+      <button class="map-point poster" style="left:44.9%; top:35.2%;" data-popup="popup-valencia-poster-2" aria-label="Valencia poster presentation"></button>
+
+      <div class="map-popup" id="popup-ss-oral" style="left:48%; top:20%;">
+        <button class="popup-close" aria-label="Close">×</button>
+        <div class="popup-type">Oral presentation</div>
+        <h4>San Sebastián, Spain</h4>
+        <p><strong>Longitudinal Insights into Iododiflunisal as a modifying drug for Alzheimer’s Disease</strong><br>ySMIN · 2024</p>
       </div>
+
+      <div class="map-popup" id="popup-bilbao-poster" style="left:48%; top:44%;">
+        <button class="popup-close" aria-label="Close">×</button>
+        <div class="popup-type">Poster presentation</div>
+        <h4>Bilbao, Spain</h4>
+        <p><strong>Transthyretin stabilization: A novel approach to Alzheimer’s treatment</strong><br>EMIM · 2025</p>
+      </div>
+
+      <div class="map-popup" id="popup-madrid-oral" style="left:48%; top:50%;">
+        <button class="popup-close" aria-label="Close">×</button>
+        <div class="popup-type">Oral presentation</div>
+        <h4>Madrid, Spain</h4>
+        <p><strong>Transthyretin stabilization: A novel approach to Alzheimer’s treatment</strong><br>ySMIN · 2025</p>
+      </div>
+
+      <div class="map-popup" id="popup-porto-oral" style="left:40%; top:43%;">
+        <button class="popup-close" aria-label="Close">×</button>
+        <div class="popup-type">Oral presentation</div>
+        <h4>Porto, Portugal</h4>
+        <p><strong>Longitudinal Insights into Iododiflunisal as a modifying drug for Alzheimer’s Disease</strong><br>EMIM · 2024</p>
+      </div>
+
+      <div class="map-popup" id="popup-santiago-oral" style="left:35%; top:20%;">
+        <button class="popup-close" aria-label="Close">×</button>
+        <div class="popup-type">Oral presentation</div>
+        <h4>Santiago de Compostela, Spain</h4>
+        <p><strong>A longitudinal in vivo molecular imaging study: Evaluation of the dose-response of Iododiflunisal on amyloid-β plaque formation in a mouse model of Alzheimer’s disease</strong><br>ySMIN · 2023</p>
+      </div>
+
+      <div class="map-popup" id="popup-granada-poster" style="left:49%; top:56%;">
+        <button class="popup-close" aria-label="Close">×</button>
+        <div class="popup-type">Poster presentation</div>
+        <h4>Granada, Spain</h4>
+        <p><strong>Evaluation of Iododiflunisal dose-response on amyloid-β plaques and neuroinflammation in the 5xFAD Alzheimer’s disease mouse model by PET imaging</strong><br>IBRO · 2023</p>
+      </div>
+
+      <div class="map-popup" id="popup-salzburg-poster" style="left:53%; top:18%;">
+        <button class="popup-close" aria-label="Close">×</button>
+        <div class="popup-type">Poster presentation</div>
+        <h4>Salzburg, Austria</h4>
+        <p><strong>Longitudinal assessment of the dose-response of Iododiflunisal on the formation of amyloid-β plaques in a mouse model of Alzheimer’s disease by PET imaging</strong><br>EMIM · 2023</p>
+      </div>
+
+      <div class="map-popup" id="popup-timisoara-poster" style="left:56%; top:39%;">
+        <button class="popup-close" aria-label="Close">×</button>
+        <div class="popup-type">Poster presentation</div>
+        <h4>Timișoara, Romania</h4>
+        <p><strong>Motor stimulant effects of DAMGO directly injected in the tail of VTA of rats</strong><br>ESBRA · 2021</p>
+      </div>
+
+      <div class="map-popup" id="popup-goldcoast-oral" style="left:61%; top:48%;">
+        <button class="popup-close" aria-label="Close">×</button>
+        <div class="popup-type">Oral presentation</div>
+        <h4>Gold Coast, Australia</h4>
+        <p><strong>Modulating Alzheimer’s Pathology with Transthyretin Stabilizers: PET Imaging Insights</strong><br>iSRS · 2025</p>
+      </div>
+
+      <div class="map-popup" id="popup-honolulu-poster" style="left:20%; top:20%;">
+        <button class="popup-close" aria-label="Close">×</button>
+        <div class="popup-type">Poster presentation</div>
+        <h4>Honolulu, USA</h4>
+        <p><strong>Evaluation of Iododiflunisal on amyloid-β deposition in 5xFAD Alzheimer’s disease mouse model by PET imaging</strong><br>iSRS · 2023</p>
+      </div>
+
+      <div class="map-popup" id="popup-valencia-poster-1" style="left:49%; top:62%;">
+        <button class="popup-close" aria-label="Close">×</button>
+        <div class="popup-type">Poster presentation</div>
+        <h4>Valencia, Spain</h4>
+        <p><strong>Activation of the mesocorticolimbic system after ethanol administration: Analysis by microdialysis in vivo</strong><br>X International Congress of Pharmacy students · 2020</p>
+      </div>
+
+      <div class="map-popup" id="popup-valencia-poster-2" style="left:49%; top:70%;">
+        <button class="popup-close" aria-label="Close">×</button>
+        <div class="popup-type">Poster presentation</div>
+        <h4>Valencia, Spain</h4>
+        <p><strong>Evaluation of N-Acetylcysteine in the prevention of alcohol relapse-like drinking behavior</strong><br>IX International Congress of Pharmacy students · 2019</p>
+      </div>
+
     </div>
 
-    <div class="conference-item">
-      <div class="conference-year">2024</div>
-      <div class="conference-content">
-        <strong>Longitudinal Insights into Iododiflunisal as a modifying drug for Alzheimer’s Disease</strong><br>
-        European Molecular Imaging Meeting (EMIM) · Porto, Portugal
-      </div>
-    </div>
-
-    <div class="conference-item">
-      <div class="conference-year">2024</div>
-      <div class="conference-content">
-        <strong>Longitudinal Insights into Iododiflunisal as a modifying drug for Alzheimer’s Disease</strong><br>
-        Young Spanish Molecular Imaging Network (ySMIN) · San Sebastián, Spain
-      </div>
-    </div>
-
-    <div class="conference-item">
-      <div class="conference-year">2023</div>
-      <div class="conference-content">
-        <strong>A longitudinal in vivo molecular imaging study: Evaluation of the dose-response of Iododiflunisal on amyloid-β plaque formation in a mouse model of Alzheimer’s disease</strong><br>
-        Young Spanish Molecular Imaging Network (ySMIN) · Santiago de Compostela, Spain
-      </div>
+    <div class="map-note">
+      Click on a city to view a conference presentation. Blue dots are oral presentations, white dots are posters.
     </div>
   </div>
-
-  <div class="conference-block">
-    <div class="gamelabel">🧾 Poster presentations</div>
-
-    <div class="conference-item">
-      <div class="conference-year">2025</div>
-      <div class="conference-content">
-        <strong>Transthyretin stabilization: A novel approach to Alzheimer’s treatment</strong><br>
-        European Molecular Imaging Meeting (EMIM) · Bilbao, Spain
-      </div>
-    </div>
-
-    <div class="conference-item">
-      <div class="conference-year">2024</div>
-      <div class="conference-content">
-        <strong>Effect of Iododiflunisal on Amyloid-β and Neuroinflammation in the 5xFAD Alzheimer’s Disease Mouse Model: A Longitudinal PET Study</strong><br>
-        NeuroGune · Bilbao, Spain
-      </div>
-    </div>
-
-    <div class="conference-item">
-      <div class="conference-year">2023</div>
-      <div class="conference-content">
-        <strong>Evaluation of Iododiflunisal dose-response on amyloid-β plaques and neuroinflammation in the 5xFAD Alzheimer’s disease mouse model by PET imaging</strong><br>
-        IBRO · Granada, Spain
-      </div>
-    </div>
-
-    <div class="conference-item">
-      <div class="conference-year">2023</div>
-      <div class="conference-content">
-        <strong>Evaluation of Iododiflunisal on amyloid-β deposition in 5xFAD Alzheimer’s disease mouse model by PET imaging</strong><br>
-        International Symposium on Radiopharmaceutical Sciences (iSRS) · Honolulu, USA
-      </div>
-    </div>
-  </div>
-
-</div>
-
-
 </div>
 
 <h2>Achievements unlocked</h2>
@@ -356,6 +531,41 @@ Research profile v1.0 · Built with caffeine, curiosity and a slightly unhealthy
 </div>
 
 </div>
+
+<script>
+  const mapPoints = document.querySelectorAll('.map-point');
+  const popups = document.querySelectorAll('.map-popup');
+  const closeButtons = document.querySelectorAll('.popup-close');
+
+  function closeAllPopups() {
+    popups.forEach(popup => popup.classList.remove('active'));
+  }
+
+  mapPoints.forEach(point => {
+    point.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const popupId = point.getAttribute('data-popup');
+      const popup = document.getElementById(popupId);
+
+      const wasOpen = popup.classList.contains('active');
+      closeAllPopups();
+      if (!wasOpen) {
+        popup.classList.add('active');
+      }
+    });
+  });
+
+  closeButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeAllPopups();
+    });
+  });
+
+  document.addEventListener('click', () => {
+    closeAllPopups();
+  });
+</script>
 
 </body>
 </html>
