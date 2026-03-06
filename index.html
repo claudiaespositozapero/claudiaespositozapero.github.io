@@ -9,7 +9,10 @@
   rel="stylesheet"
   href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
 />
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script
+  defer
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
 
 <style>
 
@@ -391,125 +394,138 @@ Research profile v1.0 · Built with caffeine, curiosity and a slightly unhealthy
 </div>
 
 <script>
-const map = L.map('conferenceMap', {
-  zoomControl: true,
-  scrollWheelZoom: true
-}).setView([25, 10], 2);
-
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '&copy; OpenStreetMap contributors'
-}).addTo(map);
-
-function markerIcon(type){
-  return L.divIcon({
-    className:'',
-    html:`<div class="custom-marker ${type}"></div>`,
-    iconSize:[16,16],
-    iconAnchor:[8,8],
-    popupAnchor:[0,-8]
-  });
-}
-
-const conferences = [
-  {
-    type:'oral',
-    coords:[-28.0167,153.4000],
-    title:'Modulating Alzheimer’s Pathology with Transthyretin Stabilizers: PET Imaging Insights',
-    event:'iSRS · 2025',
-    city:'Gold Coast, Australia'
-  },
-  {
-    type:'oral',
-    coords:[40.4168,-3.7038],
-    title:'Transthyretin stabilization: A novel approach to Alzheimer’s treatment',
-    event:'ySMIN · 2025',
-    city:'Madrid, Spain'
-  },
-  {
-    type:'oral',
-    coords:[41.1579,-8.6291],
-    title:'Longitudinal Insights into Iododiflunisal as a modifying drug for Alzheimer’s Disease',
-    event:'EMIM · 2024',
-    city:'Porto, Portugal'
-  },
-  {
-    type:'oral',
-    coords:[43.3183,-1.9812],
-    title:'Longitudinal Insights into Iododiflunisal as a modifying drug for Alzheimer’s Disease',
-    event:'ySMIN · 2024',
-    city:'San Sebastián, Spain'
-  },
-  {
-    type:'oral',
-    coords:[42.8782,-8.5448],
-    title:'A longitudinal in vivo molecular imaging study: Evaluation of the dose-response of Iododiflunisal on amyloid-β plaque formation in a mouse model of Alzheimer’s disease',
-    event:'ySMIN · 2023',
-    city:'Santiago de Compostela, Spain'
-  },
-  {
-    type:'poster',
-    coords:[43.2630,-2.9350],
-    title:'Transthyretin stabilization: A novel approach to Alzheimer’s treatment',
-    event:'EMIM · 2025',
-    city:'Bilbao, Spain'
-  },
-  {
-    type:'poster',
-    coords:[37.1773,-3.5986],
-    title:'Evaluation of Iododiflunisal dose-response on amyloid-β plaques and neuroinflammation in the 5xFAD Alzheimer’s disease mouse model by PET imaging',
-    event:'IBRO · 2023',
-    city:'Granada, Spain'
-  },
-  {
-    type:'poster',
-    coords:[47.8095,13.0550],
-    title:'Longitudinal assessment of the dose-response of Iododiflunisal on the formation of amyloid-β plaques in a mouse model of Alzheimer’s disease by PET imaging',
-    event:'EMIM · 2023',
-    city:'Salzburg, Austria'
-  },
-  {
-    type:'poster',
-    coords:[45.7489,21.2087],
-    title:'Motor stimulant effects of DAMGO directly injected in the tail of VTA of rats',
-    event:'ESBRA · 2021',
-    city:'Timișoara, Romania'
-  },
-  {
-    type:'poster',
-    coords:[21.3069,-157.8583],
-    title:'Evaluation of Iododiflunisal on amyloid-β deposition in 5xFAD Alzheimer’s disease mouse model by PET imaging',
-    event:'iSRS · 2023',
-    city:'Honolulu, USA'
-  },
-  {
-    type:'poster',
-    coords:[39.4699,-0.3763],
-    title:'Activation of the mesocorticolimbic system after ethanol administration: Analysis by microdialysis in vivo',
-    event:'X International Congress of Pharmacy Students · 2020',
-    city:'Valencia, Spain'
-  },
-  {
-    type:'poster',
-    coords:[39.4699,-0.3763],
-    title:'Evaluation of N-Acetylcysteine in the prevention of alcohol relapse-like drinking behavior',
-    event:'IX International Congress of Pharmacy Students · 2019',
-    city:'Valencia, Spain'
+document.addEventListener('DOMContentLoaded', function () {
+  const mapContainer = document.getElementById('conferenceMap');
+  if (!mapContainer || typeof L === 'undefined') {
+    console.error('Leaflet or #conferenceMap not available');
+    return;
   }
-];
 
-conferences.forEach(item => {
-  L.marker(item.coords, { icon: markerIcon(item.type) })
-    .addTo(map)
-    .bindPopup(`
-      <div>
-        <div style="font-size:12px; margin-bottom:6px; color:#a1a1aa;">
-          ${item.type === 'oral' ? 'Oral presentation' : 'Poster presentation'}
+  const map = L.map('conferenceMap', {
+    zoomControl: true,
+    scrollWheelZoom: true
+  }).setView([25, 10], 2);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors',
+    maxZoom: 18
+  }).addTo(map);
+
+  function markerIcon(type) {
+    return L.divIcon({
+      className: '',
+      html: `<div class="custom-marker ${type}"></div>`,
+      iconSize: [16, 16],
+      iconAnchor: [8, 8],
+      popupAnchor: [0, -8]
+    });
+  }
+
+  const conferences = [
+    {
+      type: 'oral',
+      coords: [-28.0167, 153.4000],
+      title: 'Modulating Alzheimer’s Pathology with Transthyretin Stabilizers: PET Imaging Insights',
+      event: 'iSRS · 2025',
+      city: 'Gold Coast, Australia'
+    },
+    {
+      type: 'oral',
+      coords: [40.4168, -3.7038],
+      title: 'Transthyretin stabilization: A novel approach to Alzheimer’s treatment',
+      event: 'ySMIN · 2025',
+      city: 'Madrid, Spain'
+    },
+    {
+      type: 'oral',
+      coords: [41.1579, -8.6291],
+      title: 'Longitudinal Insights into Iododiflunisal as a modifying drug for Alzheimer’s Disease',
+      event: 'EMIM · 2024',
+      city: 'Porto, Portugal'
+    },
+    {
+      type: 'oral',
+      coords: [43.3183, -1.9812],
+      title: 'Longitudinal Insights into Iododiflunisal as a modifying drug for Alzheimer’s Disease',
+      event: 'ySMIN · 2024',
+      city: 'San Sebastián, Spain'
+    },
+    {
+      type: 'oral',
+      coords: [42.8782, -8.5448],
+      title: 'A longitudinal in vivo molecular imaging study: Evaluation of the dose-response of Iododiflunisal on amyloid-β plaque formation in a mouse model of Alzheimer’s disease',
+      event: 'ySMIN · 2023',
+      city: 'Santiago de Compostela, Spain'
+    },
+    {
+      type: 'poster',
+      coords: [43.2630, -2.9350],
+      title: 'Transthyretin stabilization: A novel approach to Alzheimer’s treatment',
+      event: 'EMIM · 2025',
+      city: 'Bilbao, Spain'
+    },
+    {
+      type: 'poster',
+      coords: [37.1773, -3.5986],
+      title: 'Evaluation of Iododiflunisal dose-response on amyloid-β plaques and neuroinflammation in the 5xFAD Alzheimer’s disease mouse model by PET imaging',
+      event: 'IBRO · 2023',
+      city: 'Granada, Spain'
+    },
+    {
+      type: 'poster',
+      coords: [47.8095, 13.0550],
+      title: 'Longitudinal assessment of the dose-response of Iododiflunisal on the formation of amyloid-β plaques in a mouse model of Alzheimer’s disease by PET imaging',
+      event: 'EMIM · 2023',
+      city: 'Salzburg, Austria'
+    },
+    {
+      type: 'poster',
+      coords: [45.7489, 21.2087],
+      title: 'Motor stimulant effects of DAMGO directly injected in the tail of VTA of rats',
+      event: 'ESBRA · 2021',
+      city: 'Timișoara, Romania'
+    },
+    {
+      type: 'poster',
+      coords: [21.3069, -157.8583],
+      title: 'Evaluation of Iododiflunisal on amyloid-β deposition in 5xFAD Alzheimer’s disease mouse model by PET imaging',
+      event: 'iSRS · 2023',
+      city: 'Honolulu, USA'
+    },
+    {
+      type: 'poster',
+      coords: [39.4699, -0.3763],
+      title: 'Activation of the mesocorticolimbic system after ethanol administration: Analysis by microdialysis in vivo',
+      event: 'X International Congress of Pharmacy Students · 2020',
+      city: 'Valencia, Spain'
+    },
+    {
+      type: 'poster',
+      coords: [39.4699, -0.3763],
+      title: 'Evaluation of N-Acetylcysteine in the prevention of alcohol relapse-like drinking behavior',
+      event: 'IX International Congress of Pharmacy Students · 2019',
+      city: 'Valencia, Spain'
+    }
+  ];
+
+  conferences.forEach(item => {
+    L.marker(item.coords, { icon: markerIcon(item.type) })
+      .addTo(map)
+      .bindPopup(`
+        <div>
+          <div style="font-size:12px; margin-bottom:6px; color:#a1a1aa;">
+            ${item.type === 'oral' ? 'Oral presentation' : 'Poster presentation'}
+          </div>
+          <strong>${item.city}</strong><br>
+          <strong>${item.title}</strong><br>
+          ${item.event}
         </div>
-        <strong>${item.city}</strong><br>
-        <strong>${item.title}</strong><br>
-        ${item.event}
-      </div>
-    `);
+      `);
+  });
+
+  setTimeout(() => {
+    map.invalidateSize();
+  }, 200);
 });
 </script>
 
