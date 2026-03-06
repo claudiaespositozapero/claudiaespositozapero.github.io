@@ -2164,12 +2164,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  const flipCards = document.querySelectorAll('.flip-skill-card');
+  const grid = document.querySelector('.flip-skill-grid');
+  if (!grid) return;
 
-  flipCards.forEach(card => {
-    card.addEventListener('click', () => {
-      card.classList.toggle('is-flipped');
-    });
+  grid.addEventListener('click', function (e) {
+    const card = e.target.closest('.flip-skill-card');
+    if (!card) return;
+
+    const cards = grid.querySelectorAll('.flip-skill-card');
+    const wasFlipped = card.classList.contains('is-flipped');
+
+    cards.forEach(c => c.classList.remove('is-flipped'));
+
+    if (!wasFlipped) {
+      card.classList.add('is-flipped');
+    }
   });
 });
 </script>
