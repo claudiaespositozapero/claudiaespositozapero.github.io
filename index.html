@@ -12,354 +12,121 @@
 <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <style>
-
 :root{
---bg:#0e0e10;
---card:#16161a;
---accent:#6ee7ff;
---accent2:#9b8cff;
---text:#f5f5f7;
---muted:#a1a1aa;
---border:#26262b;
+  --bg:#0e0e10;
+  --card:#16161a;
+  --accent:#6ee7ff;
+  --accent2:#9b8cff;
+  --text:#f5f5f7;
+  --muted:#a1a1aa;
+  --border:#26262b;
 }
 
 *{box-sizing:border-box}
 
 body{
-margin:0;
-font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-background:var(--bg);
-color:var(--text);
-line-height:1.65;
+  margin:0;
+  font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.65;
 }
 
 .container{
-max-width:900px;
-margin:auto;
-padding:60px 24px;
+  max-width:900px;
+  margin:auto;
+  padding:60px 24px;
 }
 
 h1{
-font-size:42px;
-margin:0 0 10px 0;
-letter-spacing:-0.5px;
+  font-size:42px;
+  margin:0 0 10px 0;
+  letter-spacing:-0.5px;
 }
 
 h2{
-margin-top:50px;
-font-size:22px;
+  margin-top:50px;
+  font-size:22px;
 }
 
 h3{
-font-size:18px;
-margin-top:0;
+  font-size:18px;
+  margin-top:0;
 }
 
 p{
-color:var(--muted);
+  color:var(--muted);
 }
 
 .highlight{
-color:white;
+  color:white;
 }
 
 .header{
-margin-bottom:50px;
+  margin-bottom:50px;
 }
 
 .subtitle{
-color:var(--muted);
-font-size:16px;
+  color:var(--muted);
+  font-size:16px;
 }
 
 .badges{
-margin-top:18px;
-}
-
-.badge{
-display:inline-block;
-padding:6px 12px;
-margin-right:8px;
-margin-top:6px;
-border-radius:999px;
-background:var(--card);
-border:1px solid var(--border);
-font-size:13px;
-color:var(--muted);
-}
-
-.buttons{
-margin-top:20px;
-}
-
-.button{
-display:inline-block;
-padding:9px 14px;
-border-radius:8px;
-margin-right:10px;
-margin-top:10px;
-background:linear-gradient(90deg,var(--accent),var(--accent2));
-color:#000;
-font-weight:600;
-font-size:14px;
-text-decoration:none;
-}
-
-.button.secondary{
-background:var(--card);
-color:var(--text);
-border:1px solid var(--border);
-}
-
-.card{
-margin-top:25px;
-padding:22px;
-border-radius:12px;
-background:var(--card);
-border:1px solid var(--border);
-}
-
-.flip-skill-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:18px;
   margin-top:18px;
 }
 
-.flip-skill-card{
-  perspective:1000px;
-  height:220px;
-  cursor:pointer;
-}
-
-.flip-skill-inner{
-  position:relative;
-  width:100%;
-  height:100%;
-  transition:transform 0.6s;
-  transform-style:preserve-3d;
-}
-
-.flip-skill-card.is-flipped .flip-skill-inner{
-  transform:rotateY(180deg);
-}
-
-.flip-skill-front,
-.flip-skill-back{
-  position:absolute;
-  inset:0;
-  backface-visibility:hidden;
-  -webkit-backface-visibility:hidden;
-  border-radius:14px;
-  border:1px solid var(--border);
+.badge{
+  display:inline-block;
+  padding:6px 12px;
+  margin-right:8px;
+  margin-top:6px;
+  border-radius:999px;
   background:var(--card);
-  padding:20px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  box-shadow:0 8px 20px rgba(0,0,0,0.12);
-}
-
-.flip-skill-front{
-  transition:transform 0.15s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.flip-skill-card:hover .flip-skill-front{
-  transform:translateY(-2px);
-  border-color:#34343c;
-  box-shadow:0 12px 24px rgba(0,0,0,0.18);
-}
-
-.flip-skill-back{
-  transform:rotateY(180deg);
-  align-items:flex-start;
-  text-align:left;
-}
-
-.flip-icon{
-  font-size:28px;
-  color:var(--accent);
-  margin-bottom:12px;
-  line-height:1;
-}
-
-.flip-skill-front h3,
-.flip-skill-back h3{
-  margin:0;
-  font-size:17px;
-  line-height:1.35;
-}
-
-.flip-skill-back p{
-  margin:12px 0 0 0;
-  font-size:14px;
+  border:1px solid var(--border);
+  font-size:13px;
   color:var(--muted);
-  line-height:1.55;
 }
 
-@media (max-width:700px){
-  .flip-skill-card{
-    height:200px;
-  }
+.buttons{
+  margin-top:20px;
 }
 
-.pub{
-margin-top:14px;
+.button{
+  display:inline-block;
+  padding:9px 14px;
+  border-radius:8px;
+  margin-right:10px;
+  margin-top:10px;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  color:#000;
+  font-weight:600;
+  font-size:14px;
+  text-decoration:none;
 }
 
-.pub strong{
-display:block;
-margin-bottom:3px;
+.button.secondary{
+  background:var(--card);
+  color:var(--text);
+  border:1px solid var(--border);
+}
+
+.card{
+  margin-top:25px;
+  padding:22px;
+  border-radius:12px;
+  background:var(--card);
+  border:1px solid var(--border);
 }
 
 .gamelabel{
-font-size:12px;
-color:var(--accent);
-letter-spacing:1px;
-text-transform:uppercase;
-margin-bottom:6px;
+  font-size:12px;
+  color:var(--accent);
+  letter-spacing:1px;
+  text-transform:uppercase;
+  margin-bottom:6px;
 }
 
-.map-section{
-margin-top:24px;
-}
-
-.map-wrapper{
-position:relative;
-margin-top:18px;
-background:var(--card);
-border:1px solid var(--border);
-border-radius:14px;
-padding:20px;
-overflow:hidden;
-}
-
-.map-legend{
-display:flex;
-gap:18px;
-flex-wrap:wrap;
-margin-bottom:14px;
-font-size:14px;
-color:var(--muted);
-}
-
-.legend-item{
-display:flex;
-align-items:center;
-gap:8px;
-}
-
-.legend-dot{
-width:12px;
-height:12px;
-border-radius:50%;
-display:inline-block;
-}
-
-.legend-dot.oral{
-background:var(--accent);
-}
-
-.legend-dot.poster{
-background:#ffffff;
-border:1px solid var(--border);
-}
-
-#conferenceMap{
-width:100%;
-height:520px;
-border-radius:12px;
-overflow:hidden;
-border:1px solid #202026;
-}
-
-.map-note{
-margin-top:12px;
-font-size:13px;
-color:var(--muted);
-}
-
-.leaflet-control-zoom{
-border:none !important;
-box-shadow:none !important;
-}
-
-.leaflet-control-zoom a{
-background:#141418 !important;
-color:var(--text) !important;
-border:1px solid #202026 !important;
-}
-
-.leaflet-control-zoom a:hover{
-background:#1a1a20 !important;
-}
-
-.leaflet-container{
-  background:var(--card);
-}
-
-.leaflet-tile {
-  filter: brightness(0.85) contrast(1.1);
-}
-
-.leaflet-popup-content-wrapper{
-background:#111114;
-color:var(--text);
-border-radius:12px;
-box-shadow:0 10px 30px rgba(0,0,0,0.35);
-}
-
-.leaflet-popup-tip{
-background:#111114;
-}
-
-.leaflet-popup-content{
-color:var(--muted);
-font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-line-height:1.5;
-margin:12px 14px;
-}
-
-.leaflet-popup-content strong{
-color:var(--text);
-}
-
-.custom-marker{
-  width:12px;
-  height:12px;
-  border-radius:50%;
-  transition: transform 0.15s ease, box-shadow 0.2s ease;
-}
-
-.custom-marker.oral{
-  background:var(--accent);
-  box-shadow:0 0 0 2px rgba(110,231,255,0.14);
-}
-
-.custom-marker.poster{
-  background:#ffffff;
-  box-shadow:0 0 0 2px rgba(255,255,255,0.08);
-}
-
-.custom-marker:hover{
-  transform:scale(1.25);
-}
-
-.custom-marker.oral:hover{
-  box-shadow:0 0 0 4px rgba(110,231,255,0.25),
-             0 0 12px rgba(110,231,255,0.35);
-}
-
-.custom-marker.poster:hover{
-  box-shadow:0 0 0 4px rgba(255,255,255,0.2),
-             0 0 10px rgba(255,255,255,0.25);
-}
-
-.custom-marker{
-  cursor:pointer;
-}
+/* Timeline */
 
 .timeline{
   position:relative;
@@ -516,18 +283,266 @@ color:var(--text);
   border-color:#3a3a44;
 }
 
+/* Flip skills */
+
+.flip-skill-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:18px;
+  margin-top:18px;
+}
+
+.flip-skill-card{
+  perspective:1000px;
+  height:180px;
+  cursor:pointer;
+  transition:transform 0.18s ease;
+}
+
+.flip-skill-card:hover{
+  transform:translateY(-3px);
+}
+
+.flip-skill-inner{
+  position:relative;
+  width:100%;
+  height:100%;
+  transition:transform 0.6s cubic-bezier(.4,.2,.2,1);
+  transform-style:preserve-3d;
+}
+
+.flip-skill-card.is-flipped .flip-skill-inner{
+  transform:rotateY(180deg);
+}
+
+.flip-skill-front,
+.flip-skill-back{
+  position:absolute;
+  inset:0;
+  border-radius:14px;
+  border:1px solid var(--border);
+  background:var(--card);
+  padding:20px;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  transition:border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.flip-skill-card:hover .flip-skill-front{
+  border-color:#3a3a44;
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.flip-skill-back{
+  transform:rotateY(180deg);
+  align-items:flex-start;
+  text-align:left;
+}
+
+.flip-icon{
+  font-size:26px;
+  color:var(--accent);
+  margin-bottom:12px;
+  transition:transform 0.2s ease;
+}
+
+.flip-skill-card:hover .flip-icon{
+  transform:scale(1.1);
+}
+
+.flip-skill-front h3,
+.flip-skill-back h3{
+  margin:0;
+  font-size:16px;
+  line-height:1.3;
+}
+
+.flip-skill-back p{
+  margin-top:10px;
+  font-size:14px;
+  color:var(--muted);
+  line-height:1.5;
+}
+
+.flip-skill-card.is-flipped .flip-skill-front,
+.flip-skill-card.is-flipped .flip-skill-back{
+  border-color:#3a3a44;
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* Publications */
+
+.pub{
+  margin-top:14px;
+}
+
+.pub strong{
+  display:block;
+  margin-bottom:3px;
+}
+
+/* Map */
+
+.map-section{
+  margin-top:24px;
+}
+
+.map-wrapper{
+  position:relative;
+  margin-top:18px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:20px;
+  overflow:hidden;
+}
+
+.map-legend{
+  display:flex;
+  gap:18px;
+  flex-wrap:wrap;
+  margin-bottom:14px;
+  font-size:14px;
+  color:var(--muted);
+}
+
+.legend-item{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.legend-dot{
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  display:inline-block;
+}
+
+.legend-dot.oral{
+  background:var(--accent);
+}
+
+.legend-dot.poster{
+  background:#ffffff;
+  border:1px solid var(--border);
+}
+
+#conferenceMap{
+  width:100%;
+  height:520px;
+  border-radius:12px;
+  overflow:hidden;
+  border:1px solid var(--border);
+  background:var(--card) !important;
+}
+
+.map-note{
+  margin-top:12px;
+  font-size:13px;
+  color:var(--muted);
+}
+
+.leaflet-control-zoom{
+  border:none !important;
+  box-shadow:none !important;
+}
+
+.leaflet-control-zoom a{
+  background:#141418 !important;
+  color:var(--text) !important;
+  border:1px solid #202026 !important;
+}
+
+.leaflet-control-zoom a:hover{
+  background:#1a1a20 !important;
+}
+
+#conferenceMap,
+.leaflet-container{
+  background:var(--card) !important;
+}
+
+.leaflet-tile-pane{
+  opacity:0.88;
+}
+
+.leaflet-tile{
+  filter:brightness(0.78) contrast(1.08);
+}
+
+.leaflet-popup-content-wrapper{
+  background:#111114;
+  color:var(--text);
+  border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.35);
+}
+
+.leaflet-popup-tip{
+  background:#111114;
+}
+
+.leaflet-popup-content{
+  color:var(--muted);
+  font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  line-height:1.5;
+  margin:12px 14px;
+}
+
+.leaflet-popup-content strong{
+  color:var(--text);
+}
+
+.custom-marker{
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  transition:transform 0.15s ease, box-shadow 0.2s ease;
+  cursor:pointer;
+}
+
+.custom-marker.oral{
+  background:var(--accent);
+  box-shadow:0 0 0 2px rgba(110,231,255,0.14);
+}
+
+.custom-marker.poster{
+  background:#ffffff;
+  box-shadow:0 0 0 2px rgba(255,255,255,0.08);
+}
+
+.custom-marker:hover{
+  transform:scale(1.25);
+}
+
+.custom-marker.oral:hover{
+  box-shadow:0 0 0 4px rgba(110,231,255,0.25), 0 0 12px rgba(110,231,255,0.35);
+}
+
+.custom-marker.poster:hover{
+  box-shadow:0 0 0 4px rgba(255,255,255,0.2), 0 0 10px rgba(255,255,255,0.25);
+}
+
 .footer{
-margin-top:70px;
-font-size:13px;
-color:#6b7280;
+  margin-top:70px;
+  font-size:13px;
+  color:#6b7280;
 }
 
 @media (max-width:700px){
-#conferenceMap{
-height:420px;
-}
-}
+  #conferenceMap{
+    height:420px;
+  }
 
+  .flip-skill-card{
+    height:200px;
+  }
+}
 </style>
 </head>
 
@@ -535,328 +550,301 @@ height:420px;
 
 <div class="container">
 
-<div class="header">
+  <div class="header">
+    <h1>Claudia Esposito Zapero</h1>
 
-<h1>Claudia Esposito Zapero</h1>
+    <div class="subtitle">
+      PhD candidate in Molecular Imaging · CIC biomaGUNE (San Sebastián, Spain)
+    </div>
 
-<div class="subtitle">
-PhD candidate in Molecular Imaging · CIC biomaGUNE (San Sebastián, Spain)
-</div>
+    <div class="badges">
+      <span class="badge">PET</span>
+      <span class="badge">MRI</span>
+      <span class="badge">Alzheimer's research</span>
+      <span class="badge">Radiochemistry</span>
+    </div>
 
-<div class="badges">
-<span class="badge">PET</span>
-<span class="badge">MRI</span>
-<span class="badge">Alzheimer's research</span>
-<span class="badge">Radiochemistry</span>
-</div>
+    <div class="buttons">
+      <a class="button" href="mailto:claudiaespositozapero@gmail.com">Contact</a>
+      <a class="button secondary" href="#">Google Scholar</a>
+      <a class="button secondary" href="#">LinkedIn</a>
+      <a class="button secondary" href="#">CV</a>
+    </div>
+  </div>
 
-<div class="buttons">
-<a class="button" href="mailto:claudiaespositozapero@gmail.com">Contact</a>
-<a class="button secondary" href="#">Google Scholar</a>
-<a class="button secondary" href="#">LinkedIn</a>
-<a class="button secondary" href="#">CV</a>
-</div>
+  <div class="card">
+    <div class="gamelabel">Current mission</div>
+    <p>
+      Investigating disease-modifying strategies for <span class="highlight">Alzheimer’s disease</span> using multimodal molecular imaging. My work combines PET, MRI and MRS with behavioural and biochemical analyses in preclinical models.
+    </p>
+  </div>
 
-</div>
+  <h2>Research journey</h2>
 
-<div class="card">
+  <div class="timeline">
 
-<div class="gamelabel">Current mission</div>
-
-<p>
-Investigating disease-modifying strategies for <span class="highlight">Alzheimer’s disease</span> using multimodal molecular imaging. My work combines PET, MRI and MRS with behavioural and biochemical analyses in preclinical models.
-</p>
-
-</div>
-
-<h2>Research journey</h2>
-
-<div class="timeline">
-
-  <div class="timeline-item active">
-    <div class="timeline-dot"></div>
-    <div class="timeline-card">
-      <button class="timeline-header" type="button">
-        <div class="timeline-main">
-          <div class="timeline-date">2014–2019</div>
-          <h3 class="timeline-title">Pharmacy Degree</h3>
-          <p class="timeline-preview">University of Valencia, Spain.</p>
-        </div>
-        <div class="timeline-toggle">+</div>
-      </button>
-      <div class="timeline-body">
-        <div class="timeline-body-inner">
-          <div class="timeline-body-content">
-            <p>
-              Foundation in pharmacology, biomedical sciences and experimental research, providing the scientific background that later shaped my transition into neuroscience and molecular imaging.
-            </p>
-            <div class="timeline-tags">
-              <span class="timeline-tag">Pharmacology</span>
-              <span class="timeline-tag">Biomedical sciences</span>
-              <span class="timeline-tag">Lab training</span>
+    <div class="timeline-item active">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <button class="timeline-header" type="button">
+          <div class="timeline-main">
+            <div class="timeline-date">2014–2019</div>
+            <h3 class="timeline-title">Pharmacy Degree</h3>
+            <p class="timeline-preview">University of Valencia, Spain.</p>
+          </div>
+          <div class="timeline-toggle">+</div>
+        </button>
+        <div class="timeline-body">
+          <div class="timeline-body-inner">
+            <div class="timeline-body-content">
+              <p>
+                Foundation in pharmacology, biomedical sciences and experimental research, providing the scientific background that later shaped my transition into neuroscience and molecular imaging.
+              </p>
+              <div class="timeline-tags">
+                <span class="timeline-tag">Pharmacology</span>
+                <span class="timeline-tag">Biomedical sciences</span>
+                <span class="timeline-tag">Lab training</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="timeline-item">
-    <div class="timeline-dot"></div>
-    <div class="timeline-card">
-      <button class="timeline-header" type="button">
-        <div class="timeline-main">
-          <div class="timeline-date">2019–2022</div>
-          <h3 class="timeline-title">Research in Neuropharmacology</h3>
-          <p class="timeline-preview">University of Valencia · Ethanol action in the mesocorticolimbic dopaminergic system.</p>
-        </div>
-        <div class="timeline-toggle">+</div>
-      </button>
-      <div class="timeline-body">
-        <div class="timeline-body-inner">
-          <div class="timeline-body-content">
-            <p>
-              Research focused on the mechanisms of ethanol action using behavioural and neurochemical approaches in rodent models, including experimental surgery and in vivo techniques.
-            </p>
-            <div class="timeline-tags">
-              <span class="timeline-tag">Behavioural assays</span>
-              <span class="timeline-tag">Stereotaxic surgery</span>
-              <span class="timeline-tag">Microdialysis</span>
-              <span class="timeline-tag">Jugular cannulation</span>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <button class="timeline-header" type="button">
+          <div class="timeline-main">
+            <div class="timeline-date">2019–2022</div>
+            <h3 class="timeline-title">Research in Neuropharmacology</h3>
+            <p class="timeline-preview">University of Valencia · Ethanol action in the mesocorticolimbic dopaminergic system.</p>
+          </div>
+          <div class="timeline-toggle">+</div>
+        </button>
+        <div class="timeline-body">
+          <div class="timeline-body-inner">
+            <div class="timeline-body-content">
+              <p>
+                Research focused on the mechanisms of ethanol action using behavioural and neurochemical approaches in rodent models, including experimental surgery and in vivo techniques.
+              </p>
+              <div class="timeline-tags">
+                <span class="timeline-tag">Behavioural assays</span>
+                <span class="timeline-tag">Stereotaxic surgery</span>
+                <span class="timeline-tag">Microdialysis</span>
+                <span class="timeline-tag">Jugular cannulation</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="timeline-item">
-    <div class="timeline-dot"></div>
-    <div class="timeline-card">
-      <button class="timeline-header" type="button">
-        <div class="timeline-main">
-          <div class="timeline-date">2022–present</div>
-          <h3 class="timeline-title">PhD Candidate in Molecular Imaging</h3>
-          <p class="timeline-preview">CIC biomaGUNE · Alzheimer’s disease, PET, MRI, MRS and multimodal imaging.</p>
-        </div>
-        <div class="timeline-toggle">+</div>
-      </button>
-      <div class="timeline-body">
-        <div class="timeline-body-inner">
-          <div class="timeline-body-content">
-            <p>
-              Current PhD research focused on transthyretin stabilizers as disease-modifying strategies for Alzheimer’s disease, combining longitudinal imaging, behavioural studies and ex vivo validation.
-            </p>
-            <div class="timeline-tags">
-              <span class="timeline-tag">PET</span>
-              <span class="timeline-tag">MRI</span>
-              <span class="timeline-tag">MRS</span>
-              <span class="timeline-tag">Radiochemistry</span>
-              <span class="timeline-tag">Longitudinal studies</span>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <button class="timeline-header" type="button">
+          <div class="timeline-main">
+            <div class="timeline-date">2022–present</div>
+            <h3 class="timeline-title">PhD Candidate in Molecular Imaging</h3>
+            <p class="timeline-preview">CIC biomaGUNE · Alzheimer’s disease, PET, MRI, MRS and multimodal imaging.</p>
+          </div>
+          <div class="timeline-toggle">+</div>
+        </button>
+        <div class="timeline-body">
+          <div class="timeline-body-inner">
+            <div class="timeline-body-content">
+              <p>
+                Current PhD research focused on transthyretin stabilizers as disease-modifying strategies for Alzheimer’s disease, combining longitudinal imaging, behavioural studies and ex vivo validation.
+              </p>
+              <div class="timeline-tags">
+                <span class="timeline-tag">PET</span>
+                <span class="timeline-tag">MRI</span>
+                <span class="timeline-tag">MRS</span>
+                <span class="timeline-tag">Radiochemistry</span>
+                <span class="timeline-tag">Longitudinal studies</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="timeline-item">
-    <div class="timeline-dot"></div>
-    <div class="timeline-card">
-      <button class="timeline-header" type="button">
-        <div class="timeline-main">
-          <div class="timeline-date">2025–present</div>
-          <h3 class="timeline-title">Chair of ySMIN</h3>
-          <p class="timeline-preview">Young Spanish Molecular Imaging Network · leadership, seminars and community building.</p>
-        </div>
-        <div class="timeline-toggle">+</div>
-      </button>
-      <div class="timeline-body">
-        <div class="timeline-body-inner">
-          <div class="timeline-body-content">
-            <p>
-              Coordination of communication, scientific seminars and activities for early-career researchers in molecular imaging, with a strong focus on community and outreach.
-            </p>
-            <div class="timeline-tags">
-              <span class="timeline-tag">Leadership</span>
-              <span class="timeline-tag">Scientific outreach</span>
-              <span class="timeline-tag">Community building</span>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <button class="timeline-header" type="button">
+          <div class="timeline-main">
+            <div class="timeline-date">2025–present</div>
+            <h3 class="timeline-title">Chair of ySMIN</h3>
+            <p class="timeline-preview">Young Spanish Molecular Imaging Network · leadership, seminars and community building.</p>
+          </div>
+          <div class="timeline-toggle">+</div>
+        </button>
+        <div class="timeline-body">
+          <div class="timeline-body-inner">
+            <div class="timeline-body-content">
+              <p>
+                Coordination of communication, scientific seminars and activities for early-career researchers in molecular imaging, with a strong focus on community and outreach.
+              </p>
+              <div class="timeline-tags">
+                <span class="timeline-tag">Leadership</span>
+                <span class="timeline-tag">Scientific outreach</span>
+                <span class="timeline-tag">Community building</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 
-</div>
+  <h2>Research toolkit</h2>
 
-<h2>Research toolkit</h2>
+  <div class="flip-skill-grid">
 
-<div class="flip-skill-grid">
-
-  <div class="flip-skill-card">
-    <div class="flip-skill-inner">
-
-      <div class="flip-skill-front">
-        <div class="flip-icon">◉</div>
-        <h3>Molecular imaging</h3>
+    <div class="flip-skill-card">
+      <div class="flip-skill-inner">
+        <div class="flip-skill-front">
+          <div class="flip-icon">◉</div>
+          <h3>Molecular imaging</h3>
+        </div>
+        <div class="flip-skill-back">
+          <h3>Molecular imaging</h3>
+          <p>
+            Design and analysis of longitudinal PET studies of amyloid pathology and neuroinflammation in preclinical models.
+          </p>
+        </div>
       </div>
+    </div>
 
-      <div class="flip-skill-back">
-        <h3>Molecular imaging</h3>
-        <p>
-          Design and analysis of longitudinal PET studies of amyloid pathology and neuroinflammation in preclinical models.
-        </p>
+    <div class="flip-skill-card">
+      <div class="flip-skill-inner">
+        <div class="flip-skill-front">
+          <div class="flip-icon">◈</div>
+          <h3>MRI & MRS</h3>
+        </div>
+        <div class="flip-skill-back">
+          <h3>MRI & MRS</h3>
+          <p>
+            Structural and metabolic brain analysis using high-field MRI and magnetic resonance spectroscopy.
+          </p>
+        </div>
       </div>
+    </div>
 
+    <div class="flip-skill-card">
+      <div class="flip-skill-inner">
+        <div class="flip-skill-front">
+          <div class="flip-icon">△</div>
+          <h3>Radiochemistry</h3>
+        </div>
+        <div class="flip-skill-back">
+          <h3>Radiochemistry</h3>
+          <p>
+            Radiotracer synthesis, quality control and preparation of PET doses for preclinical imaging studies.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-skill-card">
+      <div class="flip-skill-inner">
+        <div class="flip-skill-front">
+          <div class="flip-icon">✦</div>
+          <h3>Behavioural assays</h3>
+        </div>
+        <div class="flip-skill-back">
+          <h3>Behavioural assays</h3>
+          <p>
+            Cognitive testing in rodent models, including Barnes Maze and behavioural evaluation of learning and memory.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-skill-card">
+      <div class="flip-skill-inner">
+        <div class="flip-skill-front">
+          <div class="flip-icon">⬢</div>
+          <h3>Experimental surgery</h3>
+        </div>
+        <div class="flip-skill-back">
+          <h3>Experimental surgery</h3>
+          <p>
+            Stereotaxic surgery, intracranial administration, jugular vein cannulation and microdialysis techniques.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-skill-card">
+      <div class="flip-skill-inner">
+        <div class="flip-skill-front">
+          <div class="flip-icon">☷</div>
+          <h3>Biochemical analysis</h3>
+        </div>
+        <div class="flip-skill-back">
+          <h3>Biochemical analysis</h3>
+          <p>
+            Immunohistochemistry, ELISA, flow cytometry and multiplex cytokine assays for ex vivo validation.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <h2>Research log</h2>
+
+  <div class="card">
+    <div class="pub">
+      <strong>Esposito-Zapero C. et al.</strong>
+      The rostromedial tegmental nucleus RMTg is not a critical site for ethanol-induced motor activation in rats. <em>Psychopharmacology</em> (2023)
+    </div>
+
+    <div class="pub">
+      <strong>Fernández-Rodríguez S. et al.</strong>
+      N-Acetylcysteine normalizes brain oxidative stress and neuroinflammation after ethanol abstinence. <em>Psychopharmacology</em> (2023)
+    </div>
+
+    <div class="pub">
+      <strong>Fernández-Rodríguez S. et al.</strong>
+      The Effects of N-Acetylcysteine on the Rat Mesocorticolimbic Pathway. <em>Pharmaceuticals</em> (2021)
     </div>
   </div>
 
-  <div class="flip-skill-card">
-    <div class="flip-skill-inner">
+  <h2>Conference map</h2>
 
-      <div class="flip-skill-front">
-        <div class="flip-icon">◈</div>
-        <h3>MRI & MRS</h3>
+  <div class="map-section">
+    <div class="map-wrapper">
+      <div class="map-legend">
+        <div class="legend-item"><span class="legend-dot oral"></span> Oral presentations</div>
+        <div class="legend-item"><span class="legend-dot poster"></span> Poster presentations</div>
       </div>
 
-      <div class="flip-skill-back">
-        <h3>MRI & MRS</h3>
-        <p>
-          Structural and metabolic brain analysis using high-field MRI and magnetic resonance spectroscopy.
-        </p>
-      </div>
+      <div id="conferenceMap"></div>
 
+      <div class="map-note">
+        Zoom and click on each marker to explore conference presentations.
+      </div>
     </div>
   </div>
 
-  <div class="flip-skill-card">
-    <div class="flip-skill-inner">
+  <h2>Achievements unlocked</h2>
 
-      <div class="flip-skill-front">
-        <div class="flip-icon">△</div>
-        <h3>Radiochemistry</h3>
-      </div>
-
-      <div class="flip-skill-back">
-        <h3>Radiochemistry</h3>
-        <p>
-          Radiotracer synthesis, quality control and preparation of PET doses for preclinical imaging studies.
-        </p>
-      </div>
-
-    </div>
+  <div class="card">
+    <p>
+      🏆 Best Poster Award — EMIM 2025<br>
+      🏆 Best Talk Award — PhDay 2024 & 2025<br>
+      🏆 Travel Grant — iSRS 2025
+    </p>
   </div>
 
-  <div class="flip-skill-card">
-    <div class="flip-skill-inner">
-
-      <div class="flip-skill-front">
-        <div class="flip-icon">✦</div>
-        <h3>Behavioural assays</h3>
-      </div>
-
-      <div class="flip-skill-back">
-        <h3>Behavioural assays</h3>
-        <p>
-          Cognitive testing in rodent models, including Barnes Maze and behavioural evaluation of learning and memory.
-        </p>
-      </div>
-
-    </div>
+  <div class="footer">
+    Research profile v1.0 · Built with caffeine, curiosity and a slightly unhealthy number of brain scans
   </div>
-
-  <div class="flip-skill-card">
-    <div class="flip-skill-inner">
-
-      <div class="flip-skill-front">
-        <div class="flip-icon">⬢</div>
-        <h3>Experimental surgery</h3>
-      </div>
-
-      <div class="flip-skill-back">
-        <h3>Experimental surgery</h3>
-        <p>
-          Stereotaxic surgery, intracranial administration, jugular vein cannulation and microdialysis techniques.
-        </p>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="flip-skill-card">
-    <div class="flip-skill-inner">
-
-      <div class="flip-skill-front">
-        <div class="flip-icon">☷</div>
-        <h3>Biochemical analysis</h3>
-      </div>
-
-      <div class="flip-skill-back">
-        <h3>Biochemical analysis</h3>
-        <p>
-          Immunohistochemistry, ELISA, flow cytometry and multiplex cytokine assays for ex vivo validation.
-        </p>
-      </div>
-
-    </div>
-  </div>
-
-</div>
-</div>
-
-<h2>Research log</h2>
-
-<div class="card">
-
-<div class="pub">
-<strong>Esposito-Zapero C. et al.</strong>
-The rostromedial tegmental nucleus RMTg is not a critical site for ethanol-induced motor activation in rats. <em>Psychopharmacology</em> (2023)
-</div>
-
-<div class="pub">
-<strong>Fernández-Rodríguez S. et al.</strong>
-N-Acetylcysteine normalizes brain oxidative stress and neuroinflammation after ethanol abstinence. <em>Psychopharmacology</em> (2023)
-</div>
-
-<div class="pub">
-<strong>Fernández-Rodríguez S. et al.</strong>
-The Effects of N-Acetylcysteine on the Rat Mesocorticolimbic Pathway. <em>Pharmaceuticals</em> (2021)
-</div>
-
-</div>
-
-<h2>Conference map</h2>
-
-<div class="map-section">
-  <div class="map-wrapper">
-
-    <div class="map-legend">
-      <div class="legend-item"><span class="legend-dot oral"></span> Oral presentations</div>
-      <div class="legend-item"><span class="legend-dot poster"></span> Poster presentations</div>
-    </div>
-
-    <div id="conferenceMap"></div>
-
-    <div class="map-note">
-      Zoom and click on each marker to explore conference presentations.
-    </div>
-  </div>
-</div>
-
-<h2>Achievements unlocked</h2>
-
-<div class="card">
-<p>
-🏆 Best Poster Award — EMIM 2025<br>
-🏆 Best Talk Award — PhDay 2024 & 2025<br>
-🏆 Travel Grant — iSRS 2025
-</p>
-</div>
-
-<div class="footer">
-Research profile v1.0 · Built with caffeine, curiosity and a slightly unhealthy number of brain scans
-</div>
 
 </div>
 
@@ -1100,35 +1088,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  const flipCards = document.querySelectorAll('.flip-skill-card');
-
-  flipCards.forEach(card => {
-    card.addEventListener('click', () => {
-      card.classList.toggle('is-flipped');
-    });
-  });
-});
-</script>
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-
   const cards = document.querySelectorAll('.flip-skill-card');
 
   cards.forEach(card => {
     card.addEventListener('click', () => {
-
       const isOpen = card.classList.contains('is-flipped');
 
       cards.forEach(c => c.classList.remove('is-flipped'));
 
-      if(!isOpen){
+      if (!isOpen) {
         card.classList.add('is-flipped');
       }
-
     });
   });
-
 });
 </script>
 
