@@ -303,37 +303,56 @@ color:var(--text);
   top:0;
   bottom:0;
   width:1px;
-  background:var(--border);
+  background:linear-gradient(to bottom, rgba(110,231,255,0.25), var(--border));
 }
 
 .timeline-item{
   position:relative;
-  margin-bottom:24px;
+  margin-bottom:18px;
 }
 
 .timeline-dot{
   position:absolute;
   left:-30px;
-  top:8px;
+  top:18px;
   width:12px;
   height:12px;
   border-radius:50%;
   background:var(--accent);
   box-shadow:0 0 0 3px rgba(110,231,255,0.12);
+  transition:transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.timeline-content{
+.timeline-card{
   background:var(--card);
   border:1px solid var(--border);
-  border-radius:12px;
-  padding:18px;
-  transition:transform 0.15s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  border-radius:14px;
+  overflow:hidden;
+  transition:border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
 }
 
-.timeline-content:hover{
-  transform:translateY(-2px);
+.timeline-card:hover{
+  transform:translateY(-1px);
   border-color:#34343c;
-  box-shadow:0 8px 24px rgba(0,0,0,0.18);
+  box-shadow:0 10px 24px rgba(0,0,0,0.16);
+}
+
+.timeline-header{
+  width:100%;
+  background:none;
+  border:none;
+  color:inherit;
+  text-align:left;
+  padding:18px;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:16px;
+}
+
+.timeline-main{
+  min-width:0;
 }
 
 .timeline-date{
@@ -344,15 +363,57 @@ color:var(--text);
   margin-bottom:6px;
 }
 
-.timeline-content h3{
-  margin:0 0 6px 0;
+.timeline-title{
+  margin:0;
   font-size:17px;
+  color:var(--text);
 }
 
-.timeline-content p{
-  margin:0 0 10px 0;
+.timeline-preview{
+  margin:6px 0 0 0;
   font-size:14px;
   color:var(--muted);
+}
+
+.timeline-toggle{
+  flex-shrink:0;
+  width:28px;
+  height:28px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--muted);
+  font-size:18px;
+  line-height:1;
+  transition:transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.timeline-body{
+  display:grid;
+  grid-template-rows:0fr;
+  transition:grid-template-rows 0.25s ease;
+}
+
+.timeline-body-inner{
+  overflow:hidden;
+}
+
+.timeline-body-content{
+  padding:0 18px 18px 18px;
+}
+
+.timeline-body-content p{
+  margin:0 0 12px 0;
+  font-size:14px;
+  color:var(--muted);
+}
+
+.timeline-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
 }
 
 .timeline-tag{
@@ -363,6 +424,25 @@ color:var(--text);
   border:1px solid var(--border);
   padding:6px 10px;
   border-radius:999px;
+}
+
+.timeline-item.active .timeline-body{
+  grid-template-rows:1fr;
+}
+
+.timeline-item.active .timeline-toggle{
+  transform:rotate(45deg);
+  background:#141418;
+  color:var(--text);
+}
+
+.timeline-item.active .timeline-dot{
+  transform:scale(1.15);
+  box-shadow:0 0 0 5px rgba(110,231,255,0.16), 0 0 12px rgba(110,231,255,0.18);
+}
+
+.timeline-item.active .timeline-card{
+  border-color:#3a3a44;
 }
 
 .footer{
@@ -422,43 +502,118 @@ Investigating disease-modifying strategies for <span class="highlight">Alzheimer
 
 <div class="timeline">
 
-  <div class="timeline-item">
+  <div class="timeline-item active">
     <div class="timeline-dot"></div>
-    <div class="timeline-content">
-      <div class="timeline-date">2014–2019</div>
-      <h3>Pharmacy Degree</h3>
-      <p>University of Valencia, Spain.</p>
-      <div class="timeline-tag">Skills unlocked: pharmacology · biomedical foundations · lab training</div>
+    <div class="timeline-card">
+      <button class="timeline-header" type="button">
+        <div class="timeline-main">
+          <div class="timeline-date">2014–2019</div>
+          <h3 class="timeline-title">Pharmacy Degree</h3>
+          <p class="timeline-preview">University of Valencia, Spain.</p>
+        </div>
+        <div class="timeline-toggle">+</div>
+      </button>
+      <div class="timeline-body">
+        <div class="timeline-body-inner">
+          <div class="timeline-body-content">
+            <p>
+              Foundation in pharmacology, biomedical sciences and experimental research, providing the scientific background that later shaped my transition into neuroscience and molecular imaging.
+            </p>
+            <div class="timeline-tags">
+              <span class="timeline-tag">Pharmacology</span>
+              <span class="timeline-tag">Biomedical sciences</span>
+              <span class="timeline-tag">Lab training</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
   <div class="timeline-item">
     <div class="timeline-dot"></div>
-    <div class="timeline-content">
-      <div class="timeline-date">2019–2022</div>
-      <h3>Research in Neuropharmacology</h3>
-      <p>University of Valencia. Research on the mechanisms of ethanol action in the mesocorticolimbic dopaminergic system using behavioural and neurochemical approaches.</p>
-      <div class="timeline-tag">Skills unlocked: behavioural assays · stereotaxic surgery · microdialysis · jugular cannulation</div>
+    <div class="timeline-card">
+      <button class="timeline-header" type="button">
+        <div class="timeline-main">
+          <div class="timeline-date">2019–2022</div>
+          <h3 class="timeline-title">Research in Neuropharmacology</h3>
+          <p class="timeline-preview">University of Valencia · Ethanol action in the mesocorticolimbic dopaminergic system.</p>
+        </div>
+        <div class="timeline-toggle">+</div>
+      </button>
+      <div class="timeline-body">
+        <div class="timeline-body-inner">
+          <div class="timeline-body-content">
+            <p>
+              Research focused on the mechanisms of ethanol action using behavioural and neurochemical approaches in rodent models, including experimental surgery and in vivo techniques.
+            </p>
+            <div class="timeline-tags">
+              <span class="timeline-tag">Behavioural assays</span>
+              <span class="timeline-tag">Stereotaxic surgery</span>
+              <span class="timeline-tag">Microdialysis</span>
+              <span class="timeline-tag">Jugular cannulation</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
   <div class="timeline-item">
     <div class="timeline-dot"></div>
-    <div class="timeline-content">
-      <div class="timeline-date">2022–present</div>
-      <h3>PhD Candidate in Molecular Imaging</h3>
-      <p>CIC biomaGUNE, San Sebastián. Research focused on transthyretin stabilizers as disease-modifying strategies for Alzheimer’s disease using multimodal imaging.</p>
-      <div class="timeline-tag">Skills unlocked: PET · MRI · MRS · radiochemistry · longitudinal studies</div>
+    <div class="timeline-card">
+      <button class="timeline-header" type="button">
+        <div class="timeline-main">
+          <div class="timeline-date">2022–present</div>
+          <h3 class="timeline-title">PhD Candidate in Molecular Imaging</h3>
+          <p class="timeline-preview">CIC biomaGUNE · Alzheimer’s disease, PET, MRI, MRS and multimodal imaging.</p>
+        </div>
+        <div class="timeline-toggle">+</div>
+      </button>
+      <div class="timeline-body">
+        <div class="timeline-body-inner">
+          <div class="timeline-body-content">
+            <p>
+              Current PhD research focused on transthyretin stabilizers as disease-modifying strategies for Alzheimer’s disease, combining longitudinal imaging, behavioural studies and ex vivo validation.
+            </p>
+            <div class="timeline-tags">
+              <span class="timeline-tag">PET</span>
+              <span class="timeline-tag">MRI</span>
+              <span class="timeline-tag">MRS</span>
+              <span class="timeline-tag">Radiochemistry</span>
+              <span class="timeline-tag">Longitudinal studies</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
   <div class="timeline-item">
     <div class="timeline-dot"></div>
-    <div class="timeline-content">
-      <div class="timeline-date">2025–present</div>
-      <h3>Chair of ySMIN</h3>
-      <p>Young Spanish Molecular Imaging Network. Coordination of communication, seminars and activities for early-career researchers.</p>
-      <div class="timeline-tag">Skills unlocked: leadership · scientific community building · outreach</div>
+    <div class="timeline-card">
+      <button class="timeline-header" type="button">
+        <div class="timeline-main">
+          <div class="timeline-date">2025–present</div>
+          <h3 class="timeline-title">Chair of ySMIN</h3>
+          <p class="timeline-preview">Young Spanish Molecular Imaging Network · leadership, seminars and community building.</p>
+        </div>
+        <div class="timeline-toggle">+</div>
+      </button>
+      <div class="timeline-body">
+        <div class="timeline-body-inner">
+          <div class="timeline-body-content">
+            <p>
+              Coordination of communication, scientific seminars and activities for early-career researchers in molecular imaging, with a strong focus on community and outreach.
+            </p>
+            <div class="timeline-tags">
+              <span class="timeline-tag">Leadership</span>
+              <span class="timeline-tag">Scientific outreach</span>
+              <span class="timeline-tag">Community building</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -771,6 +926,25 @@ document.addEventListener('DOMContentLoaded', function () {
     map.fitBounds(worldBounds);
     map.setMinZoom(map.getZoom());
   }, 200);
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const timelineItems = document.querySelectorAll('.timeline-item');
+
+  timelineItems.forEach(item => {
+    const header = item.querySelector('.timeline-header');
+    header.addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+
+      timelineItems.forEach(other => other.classList.remove('active'));
+
+      if (!isActive) {
+        item.classList.add('active');
+      }
+    });
+  });
 });
 </script>
 
