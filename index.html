@@ -1,39 +1,66 @@
----
-layout: default
-title : Homepage
-navbar_title: Home
----
+<h1>Claudia Espósito</h1>
 
-<div class="row">
-    <div class="col-lg-3 col-md-4">
-        {% include widgets/profile_card_mini.html %}
-    </div>
-    <div class="col-lg-9 col-md-8">
+<p>
+PhD candidate in <strong>Molecular Imaging</strong> at 
+<strong>CIC biomaGUNE (San Sebastián, Spain)</strong>.
+My research focuses on the evaluation of <strong>transthyretin stabilizers as disease-modifying strategies for Alzheimer’s disease</strong> using multimodal molecular imaging.
+</p>
 
-        {% include widgets/profile_card_bio_only.html %}
+<p>
+I combine <strong>PET, MRI and MRS imaging</strong> with behavioural studies and ex vivo analyses to investigate amyloid pathology, neuroinflammation and therapeutic responses in preclinical models.
+</p>
 
-        <!-- Debugging widgets -->
-        {% include widgets/debug_repo_name.html %}
-        {% include widgets/debug_url.html %}
+<p>
+More broadly, I am interested in <strong>translational neuroimaging, neurodegeneration research and clear scientific communication</strong>, particularly through effective data visualization.
+</p>
 
-        {% if site.data.display.homepage.show_experience %}
-            {% include widgets/experience_card.html %}
-        {% endif %}
+<hr>
 
-        {% if site.data.display.homepage.show_news %}
-        {% assign count_news = site.news | size %}
-        {% if count_news > 0 %}
-        {% include widgets/news_card.html limit=site.data.display.homepage.num_news %}
-        {% endif %}
-        {% endif %}
+<h2>Research Interests</h2>
 
-        {% if site.data.display.homepage.show_selected_publications %}
-        {% assign pubs = site.publications | sort: "date" | reverse | where: "selected", true %}
-        {%
-        include widgets/publication_card.html
-        publications=pubs
-        title='<i class="fas fa-star"></i> Selected Publications'
-        %}
-        {% endif %}
-    </div>
-</div>
+<ul>
+<li>Molecular imaging of neurodegenerative diseases</li>
+<li>Alzheimer’s disease and amyloid pathology</li>
+<li>Preclinical PET imaging</li>
+<li>Multimodal neuroimaging (PET, MRI, MRS)</li>
+<li>Translational neuroimaging</li>
+</ul>
+
+<hr>
+
+<h2>Current Position</h2>
+
+<p>
+<strong>Predoctoral Researcher</strong><br>
+Radiochemistry and Nuclear Imaging Lab<br>
+CIC biomaGUNE, San Sebastián (Spain)<br>
+Supervisors: Jordi Llop & Abraham Martín
+</p>
+
+<p>
+My PhD project evaluates transthyretin stabilizers as potential disease-modifying drugs for Alzheimer’s disease using longitudinal imaging studies in transgenic mouse models.
+</p>
+
+<hr>
+
+<h2>Background</h2>
+
+<p>
+Before starting my PhD, I worked in the <strong>Neuropharmacology Group at the University of Valencia</strong>, studying the mechanisms of ethanol action in the mesocorticolimbic dopaminergic system using behavioural and neurochemical approaches.
+</p>
+
+<p>
+I hold a <strong>Pharmacy degree from the University of Valencia</strong> and I am currently pursuing a PhD in Synthetic and Industrial Chemistry funded by an FPI fellowship.
+</p>
+
+<hr>
+
+<h2>Links</h2>
+
+<ul>
+<li>Email: claudiaespositozapero@gmail.com</li>
+<li>Location: San Sebastián, Spain</li>
+<li>LinkedIn: (add link)</li>
+<li>Google Scholar: (add link)</li>
+<li>ORCID: (add link)</li>
+</ul>
