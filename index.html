@@ -1080,5 +1080,17 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const flipCards = document.querySelectorAll('.flip-skill-card');
+
+  flipCards.forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('is-flipped');
+    });
+  });
+});
+</script>
+
 </body>
 </html>
