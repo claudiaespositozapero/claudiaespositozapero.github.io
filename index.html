@@ -446,16 +446,24 @@ const map = L.map('conferenceMap', {
   maxBoundsViscosity: 1.0
 }).setView([25, 10], 1.2);
 
+const worldBounds = [
+  [-90, -180],
+  [90, 180]
+];
+
+map.setMaxBounds(worldBounds);
+
 map.setMaxBounds([
   [-85, -180],
   [85, 180]
 ]);
 
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
-    subdomains: 'abcd',
-    maxZoom: 20
-  }).addTo(map);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+  subdomains: 'abcd',
+  maxZoom: 20,
+  noWrap: true
+}).addTo(map);
 
   function markerIcon(type) {
     return L.divIcon({
