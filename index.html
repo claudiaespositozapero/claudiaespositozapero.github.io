@@ -119,19 +119,90 @@ background:var(--card);
 border:1px solid var(--border);
 }
 
-.skillgrid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:14px;
-margin-top:18px;
+.flip-skill-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;
+  margin-top:18px;
 }
 
-.skill{
-padding:16px;
-background:#141418;
-border-radius:10px;
-border:1px solid var(--border);
-font-size:14px;
+.flip-skill-card{
+  perspective:1000px;
+  height:220px;
+  cursor:pointer;
+}
+
+.flip-skill-inner{
+  position:relative;
+  width:100%;
+  height:100%;
+  transition:transform 0.6s;
+  transform-style:preserve-3d;
+}
+
+.flip-skill-card.is-flipped .flip-skill-inner{
+  transform:rotateY(180deg);
+}
+
+.flip-skill-front,
+.flip-skill-back{
+  position:absolute;
+  inset:0;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  border-radius:14px;
+  border:1px solid var(--border);
+  background:var(--card);
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  box-shadow:0 8px 20px rgba(0,0,0,0.12);
+}
+
+.flip-skill-front{
+  transition:transform 0.15s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.flip-skill-card:hover .flip-skill-front{
+  transform:translateY(-2px);
+  border-color:#34343c;
+  box-shadow:0 12px 24px rgba(0,0,0,0.18);
+}
+
+.flip-skill-back{
+  transform:rotateY(180deg);
+  align-items:flex-start;
+  text-align:left;
+}
+
+.flip-icon{
+  font-size:28px;
+  color:var(--accent);
+  margin-bottom:12px;
+  line-height:1;
+}
+
+.flip-skill-front h3,
+.flip-skill-back h3{
+  margin:0;
+  font-size:17px;
+  line-height:1.35;
+}
+
+.flip-skill-back p{
+  margin:12px 0 0 0;
+  font-size:14px;
+  color:var(--muted);
+  line-height:1.55;
+}
+
+@media (max-width:700px){
+  .flip-skill-card{
+    height:200px;
+  }
 }
 
 .pub{
@@ -620,38 +691,99 @@ Investigating disease-modifying strategies for <span class="highlight">Alzheimer
 </div>
 
 <h2>Skill tree</h2>
+<h2>Skill tree</h2>
 
-<div class="skillgrid">
+<div class="flip-skill-grid">
 
-<div class="skill">
-<strong>Multimodal molecular imaging</strong><br>
-Design and analysis of longitudinal preclinical imaging studies using PET, MRI and MRS to assess amyloid pathology, neuroinflammation, brain structure and metabolism.
-</div>
+  <div class="flip-skill-card">
+    <div class="flip-skill-inner">
+      <div class="flip-skill-front">
+        <div class="flip-icon">◉</div>
+        <h3>Multimodal molecular imaging</h3>
+      </div>
+      <div class="flip-skill-back">
+        <h3>Multimodal molecular imaging</h3>
+        <p>
+          Design and analysis of longitudinal preclinical imaging studies using PET, MRI and MRS to assess amyloid pathology, neuroinflammation, brain structure and metabolism.
+        </p>
+      </div>
+    </div>
+  </div>
 
-<div class="skill">
-<strong>Radiochemistry</strong><br>
-Radiotracer synthesis, quality control, dose preparation and intravenous administration for preclinical imaging studies.
-</div>
+  <div class="flip-skill-card">
+    <div class="flip-skill-inner">
+      <div class="flip-skill-front">
+        <div class="flip-icon">◈</div>
+        <h3>Radiochemistry</h3>
+      </div>
+      <div class="flip-skill-back">
+        <h3>Radiochemistry</h3>
+        <p>
+          Radiotracer synthesis, quality control, dose preparation and intravenous administration for preclinical imaging studies.
+        </p>
+      </div>
+    </div>
+  </div>
 
-<div class="skill">
-<strong>Behavioural neuroscience</strong><br>
-Design and execution of behavioural assays to evaluate learning and memory in rodent models, including Barnes Maze.
-</div>
+  <div class="flip-skill-card">
+    <div class="flip-skill-inner">
+      <div class="flip-skill-front">
+        <div class="flip-icon">△</div>
+        <h3>Behavioural neuroscience</h3>
+      </div>
+      <div class="flip-skill-back">
+        <h3>Behavioural neuroscience</h3>
+        <p>
+          Design and execution of behavioural assays to evaluate learning and memory in rodent models, including Barnes Maze.
+        </p>
+      </div>
+    </div>
+  </div>
 
-<div class="skill">
-<strong>Biochemical and histological analysis</strong><br>
-Ex vivo validation using immunohistochemistry, ELISA, flow cytometry and multiplex cytokine assays.
-</div>
+  <div class="flip-skill-card">
+    <div class="flip-skill-inner">
+      <div class="flip-skill-front">
+        <div class="flip-icon">✦</div>
+        <h3>Biochemical and histological analysis</h3>
+      </div>
+      <div class="flip-skill-back">
+        <h3>Biochemical and histological analysis</h3>
+        <p>
+          Ex vivo validation using immunohistochemistry, ELISA, flow cytometry and multiplex cytokine assays.
+        </p>
+      </div>
+    </div>
+  </div>
 
-<div class="skill">
-<strong>Experimental surgery</strong><br>
-Rodent surgical procedures including stereotaxic surgery, intracranial administration, jugular vein cannulation and microdialysis techniques.
-</div>
+  <div class="flip-skill-card">
+    <div class="flip-skill-inner">
+      <div class="flip-skill-front">
+        <div class="flip-icon">⬢</div>
+        <h3>Experimental surgery</h3>
+      </div>
+      <div class="flip-skill-back">
+        <h3>Experimental surgery</h3>
+        <p>
+          Rodent surgical procedures including stereotaxic surgery, intracranial administration, jugular vein cannulation and microdialysis techniques.
+        </p>
+      </div>
+    </div>
+  </div>
 
-<div class="skill">
-<strong>Science communication</strong><br>
-Scientific outreach, conference presentations and development of clear data visualisations for effective research communication.
-</div>
+  <div class="flip-skill-card">
+    <div class="flip-skill-inner">
+      <div class="flip-skill-front">
+        <div class="flip-icon">☄</div>
+        <h3>Science communication</h3>
+      </div>
+      <div class="flip-skill-back">
+        <h3>Science communication</h3>
+        <p>
+          Scientific outreach, conference presentations and development of clear data visualisations for effective research communication.
+        </p>
+      </div>
+    </div>
+  </div>
 
 </div>
 
