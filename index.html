@@ -438,13 +438,19 @@ document.addEventListener('DOMContentLoaded', function () {
     return;
   }
 
+const worldBounds = [
+  [-60, -180],
+  [80, 180]
+];
+
 const map = L.map('conferenceMap', {
   zoomControl: true,
   scrollWheelZoom: true,
-  minZoom: 2,
-  maxZoom: 6
+  maxBounds: worldBounds,
   maxBoundsViscosity: 1.0
-}).setView([25, 10], 1.2);
+});
+
+map.fitBounds(worldBounds);
 
 const worldBounds = [
   [-90, -180],
