@@ -690,101 +690,119 @@ Investigating disease-modifying strategies for <span class="highlight">Alzheimer
 
 </div>
 
-<h2>Skill tree</h2>
-<h2>Skill tree</h2>
+<h2>Research toolkit</h2>
 
 <div class="flip-skill-grid">
 
   <div class="flip-skill-card">
     <div class="flip-skill-inner">
+
       <div class="flip-skill-front">
         <div class="flip-icon">◉</div>
-        <h3>Multimodal molecular imaging</h3>
+        <h3>Molecular imaging</h3>
       </div>
+
       <div class="flip-skill-back">
-        <h3>Multimodal molecular imaging</h3>
+        <h3>Molecular imaging</h3>
         <p>
-          Design and analysis of longitudinal preclinical imaging studies using PET, MRI and MRS to assess amyloid pathology, neuroinflammation, brain structure and metabolism.
+          Design and analysis of longitudinal PET studies of amyloid pathology and neuroinflammation in preclinical models.
         </p>
       </div>
+
     </div>
   </div>
 
   <div class="flip-skill-card">
     <div class="flip-skill-inner">
+
       <div class="flip-skill-front">
         <div class="flip-icon">◈</div>
-        <h3>Radiochemistry</h3>
+        <h3>MRI & MRS</h3>
       </div>
+
       <div class="flip-skill-back">
-        <h3>Radiochemistry</h3>
+        <h3>MRI & MRS</h3>
         <p>
-          Radiotracer synthesis, quality control, dose preparation and intravenous administration for preclinical imaging studies.
+          Structural and metabolic brain analysis using high-field MRI and magnetic resonance spectroscopy.
         </p>
       </div>
+
     </div>
   </div>
 
   <div class="flip-skill-card">
     <div class="flip-skill-inner">
+
       <div class="flip-skill-front">
         <div class="flip-icon">△</div>
-        <h3>Behavioural neuroscience</h3>
+        <h3>Radiochemistry</h3>
       </div>
+
       <div class="flip-skill-back">
-        <h3>Behavioural neuroscience</h3>
+        <h3>Radiochemistry</h3>
         <p>
-          Design and execution of behavioural assays to evaluate learning and memory in rodent models, including Barnes Maze.
+          Radiotracer synthesis, quality control and preparation of PET doses for preclinical imaging studies.
         </p>
       </div>
+
     </div>
   </div>
 
   <div class="flip-skill-card">
     <div class="flip-skill-inner">
+
       <div class="flip-skill-front">
         <div class="flip-icon">✦</div>
-        <h3>Biochemical and histological analysis</h3>
+        <h3>Behavioural assays</h3>
       </div>
+
       <div class="flip-skill-back">
-        <h3>Biochemical and histological analysis</h3>
+        <h3>Behavioural assays</h3>
         <p>
-          Ex vivo validation using immunohistochemistry, ELISA, flow cytometry and multiplex cytokine assays.
+          Cognitive testing in rodent models, including Barnes Maze and behavioural evaluation of learning and memory.
         </p>
       </div>
+
     </div>
   </div>
 
   <div class="flip-skill-card">
     <div class="flip-skill-inner">
+
       <div class="flip-skill-front">
         <div class="flip-icon">⬢</div>
         <h3>Experimental surgery</h3>
       </div>
+
       <div class="flip-skill-back">
         <h3>Experimental surgery</h3>
         <p>
-          Rodent surgical procedures including stereotaxic surgery, intracranial administration, jugular vein cannulation and microdialysis techniques.
+          Stereotaxic surgery, intracranial administration, jugular vein cannulation and microdialysis techniques.
         </p>
       </div>
+
     </div>
   </div>
 
   <div class="flip-skill-card">
     <div class="flip-skill-inner">
+
       <div class="flip-skill-front">
-        <div class="flip-icon">☄</div>
-        <h3>Science communication</h3>
+        <div class="flip-icon">☷</div>
+        <h3>Biochemical analysis</h3>
       </div>
+
       <div class="flip-skill-back">
-        <h3>Science communication</h3>
+        <h3>Biochemical analysis</h3>
         <p>
-          Scientific outreach, conference presentations and development of clear data visualisations for effective research communication.
+          Immunohistochemistry, ELISA, flow cytometry and multiplex cytokine assays for ex vivo validation.
         </p>
       </div>
+
     </div>
   </div>
 
+</div>
 </div>
 
 <h2>Research log</h2>
@@ -1089,6 +1107,28 @@ document.addEventListener('DOMContentLoaded', function () {
       card.classList.toggle('is-flipped');
     });
   });
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  const cards = document.querySelectorAll('.flip-skill-card');
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+
+      const isOpen = card.classList.contains('is-flipped');
+
+      cards.forEach(c => c.classList.remove('is-flipped'));
+
+      if(!isOpen){
+        card.classList.add('is-flipped');
+      }
+
+    });
+  });
+
 });
 </script>
 
