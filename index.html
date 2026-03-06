@@ -3,159 +3,147 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Claudia Esposito | Research Interface</title>
+<title>Claudia Espósito | Molecular Imaging</title>
 
 <style>
 
 :root{
---bg:#060913;
---panel:#0f1426;
---panel2:#131a33;
---accent:#6df0ff;
---accent2:#7c8cff;
---text:#e6ebff;
---muted:#9aa7d4;
+--bg:#0e0e10;
+--card:#16161a;
+--accent:#6ee7ff;
+--accent2:#9b8cff;
+--text:#f5f5f7;
+--muted:#a1a1aa;
+--border:#26262b;
 }
 
 *{box-sizing:border-box}
 
 body{
 margin:0;
-font-family: "Segoe UI", Arial, sans-serif;
-background:radial-gradient(circle at top,#0f1735,#050812);
+font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+background:var(--bg);
 color:var(--text);
-line-height:1.6;
+line-height:1.65;
 }
 
 .container{
-max-width:1100px;
+max-width:900px;
 margin:auto;
-padding:40px 20px;
+padding:60px 24px;
 }
 
 h1{
-font-size:48px;
-margin-bottom:10px;
-letter-spacing:1px;
+font-size:42px;
+margin:0 0 10px 0;
+letter-spacing:-0.5px;
 }
 
 h2{
-color:var(--accent);
-margin-top:40px;
+margin-top:50px;
+font-size:22px;
 }
 
-.panel{
-background:var(--panel);
-border:1px solid #1e2a55;
-border-radius:14px;
-padding:25px;
-margin-top:20px;
-box-shadow:0 0 25px rgba(0,0,0,0.6);
-}
-
-.hero{
-display:grid;
-grid-template-columns:1fr 300px;
-gap:40px;
-align-items:center;
-}
-
-.profilebox{
-background:var(--panel2);
-border:1px solid #1c2550;
-padding:25px;
-border-radius:16px;
-text-align:center;
-}
-
-.avatar{
-width:120px;
-height:120px;
-border-radius:12px;
-background:linear-gradient(135deg,var(--accent),var(--accent2));
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:36px;
-font-weight:bold;
-margin:auto;
-margin-bottom:15px;
-}
-
-.tag{
+p{
 color:var(--muted);
-font-size:14px;
 }
 
-.buttons a{
+.highlight{
+color:white;
+}
+
+.header{
+margin-bottom:50px;
+}
+
+.subtitle{
+color:var(--muted);
+font-size:16px;
+}
+
+.badges{
+margin-top:18px;
+}
+
+.badge{
 display:inline-block;
-margin:5px;
-padding:8px 14px;
-border-radius:8px;
-background:linear-gradient(90deg,var(--accent),var(--accent2));
-color:#04101a;
-font-weight:bold;
+padding:6px 12px;
+margin-right:8px;
+margin-top:6px;
+border-radius:999px;
+background:var(--card);
+border:1px solid var(--border);
 font-size:13px;
+color:var(--muted);
+}
+
+.buttons{
+margin-top:20px;
+}
+
+.button{
+display:inline-block;
+padding:9px 14px;
+border-radius:8px;
+margin-right:10px;
+margin-top:10px;
+background:linear-gradient(90deg,var(--accent),var(--accent2));
+color:#000;
+font-weight:600;
+font-size:14px;
 text-decoration:none;
 }
 
-.buttons a:hover{
-opacity:0.9
+.button.secondary{
+background:var(--card);
+color:var(--text);
+border:1px solid var(--border);
 }
 
-.stats{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:15px;
-margin-top:20px;
-}
-
-.stat{
-background:var(--panel2);
-padding:15px;
-border-radius:10px;
-border:1px solid #1e2a55;
-text-align:center;
-}
-
-.stat strong{
-font-size:18px;
-display:block;
+.card{
+margin-top:25px;
+padding:22px;
+border-radius:12px;
+background:var(--card);
+border:1px solid var(--border);
 }
 
 .skillgrid{
 display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:15px;
-margin-top:15px;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:14px;
+margin-top:18px;
 }
 
 .skill{
-background:var(--panel2);
-padding:15px;
+padding:16px;
+background:#141418;
 border-radius:10px;
-border:1px solid #1e2a55;
+border:1px solid var(--border);
+font-size:14px;
 }
 
 .pub{
-background:var(--panel2);
-padding:15px;
-border-radius:10px;
-border:1px solid #1e2a55;
-margin-top:10px;
+margin-top:14px;
+}
+
+.pub strong{
+display:block;
+margin-bottom:3px;
+}
+
+.gamelabel{
+font-size:12px;
+color:var(--accent);
+letter-spacing:1px;
+text-transform:uppercase;
+margin-bottom:6px;
 }
 
 .footer{
-margin-top:60px;
-text-align:center;
-color:var(--muted);
+margin-top:70px;
 font-size:13px;
-}
-
-@media(max-width:850px){
-.hero{grid-template-columns:1fr}
-.stats{grid-template-columns:repeat(2,1fr)}
-.skillgrid{grid-template-columns:1fr}
+color:#6b7280;
 }
 
 </style>
@@ -165,116 +153,81 @@ font-size:13px;
 
 <div class="container">
 
-<div class="hero">
+<div class="header">
 
-<div>
+<h1>Claudia Espósito</h1>
 
-<h1>Claudia Esposito</h1>
-
-<p class="tag">PhD Candidate · Molecular Imaging · Alzheimer’s Disease</p>
-
-<div class="panel">
-
-<h2>Current Mission</h2>
-
-<p>
-Investigating disease‑modifying strategies for Alzheimer’s disease using multimodal molecular imaging. My research combines PET, MRI and MRS with behavioural and biochemical analyses in preclinical models to understand amyloid pathology and neuroinflammation.
-</p>
-
+<div class="subtitle">
+PhD candidate in Molecular Imaging · CIC biomaGUNE
 </div>
 
-<div class="stats">
-
-<div class="stat">
-<strong>3+</strong>
-Publications
+<div class="badges">
+<span class="badge">PET</span>
+<span class="badge">MRI</span>
+<span class="badge">Alzheimer's research</span>
+<span class="badge">Radiochemistry</span>
 </div>
-
-<div class="stat">
-<strong>15+</strong>
-Conference works
-</div>
-
-<div class="stat">
-<strong>PET / MRI</strong>
-Core methods
-</div>
-
-<div class="stat">
-<strong>2022–</strong>
-PhD project
-</div>
-
-</div>
-
-</div>
-
-<div class="profilebox">
-
-<div class="avatar">CE</div>
-
-<p>
-Predoctoral researcher at
-<br>
-<strong>CIC biomaGUNE</strong>
-<br>
-San Sebastián, Spain
-</p>
 
 <div class="buttons">
-<a href="mailto:claudiaespositozapero@gmail.com">Email</a>
-<a href="#">Scholar</a>
-<a href="#">LinkedIn</a>
-<a href="#">CV</a>
+<a class="button" href="mailto:claudiaespositozapero@gmail.com">Contact</a>
+<a class="button secondary" href="#">Google Scholar</a>
+<a class="button secondary" href="#">LinkedIn</a>
+<a class="button secondary" href="#">CV</a>
 </div>
 
 </div>
 
+<div class="card">
+
+<div class="gamelabel">Current mission</div>
+
+<p>
+Investigating disease‑modifying strategies for <span class="highlight">Alzheimer’s disease</span> using multimodal molecular imaging. My work combines PET, MRI and MRS with behavioural and biochemical analyses in preclinical models.
+</p>
+
 </div>
 
-<div class="panel">
 
-<h2>Skill Tree</h2>
+<h2>Skill tree</h2>
 
 <div class="skillgrid">
 
 <div class="skill">
-<strong>Molecular Imaging</strong>
-<p class="tag">PET imaging of amyloid plaques and neuroinflammation</p>
+<strong>Molecular imaging</strong><br>
+PET imaging of amyloid pathology and neuroinflammation
 </div>
 
 <div class="skill">
-<strong>Multimodal Neuroimaging</strong>
-<p class="tag">MRI and MRS for structural and metabolic brain analysis</p>
+<strong>Multimodal neuroimaging</strong><br>
+MRI and MRS for structural and metabolic brain analysis
 </div>
 
 <div class="skill">
-<strong>Radiochemistry</strong>
-<p class="tag">Radiotracer synthesis, QC and injection</p>
+<strong>Radiochemistry</strong><br>
+Radiotracer synthesis, QC and dose preparation
 </div>
 
 <div class="skill">
-<strong>Behavioural assays</strong>
-<p class="tag">Barnes Maze and other cognitive tests</p>
+<strong>Behavioural assays</strong><br>
+Barnes Maze and cognitive testing
 </div>
 
 <div class="skill">
-<strong>Ex vivo validation</strong>
-<p class="tag">IHC, ELISA, flow cytometry, multiplex cytokines</p>
+<strong>Ex vivo analysis</strong><br>
+IHC, ELISA, flow cytometry and cytokine panels
 </div>
 
 <div class="skill">
-<strong>Scientific communication</strong>
-<p class="tag">Visual storytelling and outreach</p>
+<strong>Science communication</strong><br>
+Data visualisation and outreach
 </div>
 
 </div>
 
-</div>
 
-<div class="panel">
+<h2>Research log</h2>
 
-<h2>Research Log — Publications</h2>
+<div class="card">
 
 <div class="pub">
 <strong>Esposito‑Zapero C. et al.</strong>
@@ -283,7 +236,7 @@ The rostromedial tegmental nucleus RMTg is not a critical site for ethanol‑ind
 
 <div class="pub">
 <strong>Fernández‑Rodríguez S. et al.</strong>
-N‑Acetylcysteine normalizes brain oxidative stress and neuroinflammation observed after protracted ethanol abstinence. Psychopharmacology (2023)
+N‑Acetylcysteine normalizes brain oxidative stress and neuroinflammation after ethanol abstinence. Psychopharmacology (2023)
 </div>
 
 <div class="pub">
@@ -293,33 +246,22 @@ The Effects of N‑Acetylcysteine on the Rat Mesocorticolimbic Pathway. Pharmace
 
 </div>
 
-<div class="panel">
 
-<h2>Achievements Unlocked</h2>
+<h2>Achievements unlocked</h2>
 
-<ul>
-<li>Best Poster Award — EMIM 2025</li>
-<li>Travel Grant — iSRS 2025</li>
-<li>Best Talk Award — PhDay 2024 & 2025</li>
-<li>Group Work Award — TOPIM 2025</li>
-</ul>
-
-</div>
-
-<div class="panel">
-
-<h2>Contact Terminal</h2>
+<div class="card">
 
 <p>
-Email: claudiaespositozapero@gmail.com
-<br>
-Location: San Sebastián, Spain
+🏆 Best Poster Award — EMIM 2025<br>
+🏆 Best Talk Award — PhDay 2024 & 2025<br>
+🏆 Travel Grant — iSRS 2025
 </p>
 
 </div>
 
+
 <div class="footer">
-Research interface v1.0 · Built with caffeine, curiosity and molecular imaging
+Research profile v1.0 · Built with caffeine, curiosity and a slightly unhealthy number of brain scans
 </div>
 
 </div>
