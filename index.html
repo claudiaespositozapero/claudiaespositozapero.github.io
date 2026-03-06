@@ -413,12 +413,12 @@ p{
 .map-wrapper{
   position:relative;
   margin-top:18px;
-  background:transparent;
-  border:none;
-  border-radius:0;
-  padding:0;
-  overflow:visible;
-  box-shadow:none;
+  background:linear-gradient(180deg, rgba(32,37,54,0.92), rgba(27,31,42,0.92));
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:20px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
 }
 
 .map-legend{
@@ -455,20 +455,15 @@ p{
 #conferenceMap{
   width:100%;
   height:520px;
-  border-radius:0;
+  border-radius:14px;
   overflow:hidden;
-  border:none;
-  background:transparent;
+  border:1px solid #242938;
 }
 
 .map-note{
   margin-top:12px;
   font-size:13px;
   color:var(--muted);
-}
-
-.leaflet-container{
-  background:transparent !important;
 }
 
 .leaflet-control-zoom{
@@ -484,6 +479,14 @@ p{
 
 .leaflet-control-zoom a:hover{
   background:#202536 !important;
+}
+
+.leaflet-container{
+  background:#181c27;
+}
+
+.leaflet-tile{
+  filter:brightness(0.9) contrast(1.08) saturate(0.9);
 }
 
 .leaflet-popup-content-wrapper{
@@ -815,7 +818,7 @@ p{
 
   </div>
 
-  <h2>Publications</h2>
+  <h2>Research log</h2>
 
   <div class="card">
 
@@ -889,6 +892,16 @@ document.addEventListener('DOMContentLoaded', function () {
     maxBounds: worldBounds,
     maxBoundsViscosity: 1.0
   });
+
+  L.tileLayer(
+    'https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png',
+    {
+      attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+      subdomains: 'abcd',
+      maxZoom: 20,
+      noWrap: true
+    }
+  ).addTo(map);
 
   map.fitBounds(worldBounds);
   map.setMinZoom(map.getZoom());
@@ -1100,229 +1113,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  const mapContainer = document.getElementById('conferenceMap');
-  if (!mapContainer || typeof L === 'undefined') {
-    console.error('Leaflet or #conferenceMap not available');
-    return;
-  }
+  const grid = document.querySelector('.flip-skill-grid');
+  if (!grid) return;
 
-  const worldBounds = [
-    [-60, -180],
-    [85, 180]
-  ];
+  grid.addEventListener('click', function (e) {
+    const card = e.target.closest('.flip-skill-card');
+    if (!card) return;
 
-  const map = L.map('conferenceMap', {
-    zoomControl: true,
-    scrollWheelZoom: true,
-    maxBounds: worldBounds,
-    maxBoundsViscosity: 1.0,
-    attributionControl: false
-  });
+    const cards = grid.querySelectorAll('.flip-skill-card');
+    const wasFlipped = card.classList.contains('is-flipped');
 
-  map.fitBounds(worldBounds);
-  map.setMinZoom(map.getZoom());
+    cards.forEach(c => c.classList.remove('is-flipped'));
 
-  fetch('https://cdn.jsdelivr.net/gh/johan/world.geo.json@master/countries.geo.json')
-    .then(response => response.json())
-    .then(data => {
-      L.geoJSON(data, {
-        style: function () {
-          return {
-            color: '#3a3f58',
-            weight: 1,
-            fillColor: '#1b2030',
-            fillOpacity: 1
-          };
-        }
-      }).addTo(map);
-    })
-    .catch(error => {
-      console.error('Error loading GeoJSON:', error);
-    });
-
-  function markerIcon(type) {
-    return L.divIcon({
-      className: '',
-      html: `<div class="custom-marker ${type}"></div>`,
-      iconSize: [13, 13],
-      iconAnchor: [6.5, 6.5],
-      popupAnchor: [0, -8]
-    });
-  }
-
-  const conferences = [
-    {
-      city: 'Gold Coast, Australia',
-      coords: [-28.0167, 153.4000],
-      items: [
-        {
-          type: 'oral',
-          title: 'Modulating Alzheimer’s Pathology with Transthyretin Stabilizers: PET Imaging Insights',
-          event: 'iSRS · 2025'
-        }
-      ]
-    },
-    {
-      city: 'Madrid, Spain',
-      coords: [40.4168, -3.7038],
-      items: [
-        {
-          type: 'oral',
-          title: 'Transthyretin stabilization: A novel approach to Alzheimer’s treatment',
-          event: 'ySMIN · 2025'
-        }
-      ]
-    },
-    {
-      city: 'Porto, Portugal',
-      coords: [41.1579, -8.6291],
-      items: [
-        {
-          type: 'oral',
-          title: 'Longitudinal Insights into Iododiflunisal as a modifying drug for Alzheimer’s Disease',
-          event: 'EMIM · 2024'
-        }
-      ]
-    },
-    {
-      city: 'San Sebastián, Spain',
-      coords: [43.3183, -1.9812],
-      items: [
-        {
-          type: 'oral',
-          title: 'Longitudinal Insights into Iododiflunisal as a modifying drug for Alzheimer’s Disease',
-          event: 'ySMIN · 2024'
-        }
-      ]
-    },
-    {
-      city: 'Santiago de Compostela, Spain',
-      coords: [42.8782, -8.5448],
-      items: [
-        {
-          type: 'oral',
-          title: 'A longitudinal in vivo molecular imaging study: Evaluation of the dose-response of Iododiflunisal on amyloid-β plaque formation in a mouse model of Alzheimer’s disease',
-          event: 'ySMIN · 2023'
-        }
-      ]
-    },
-    {
-      city: 'Bilbao, Spain',
-      coords: [43.2630, -2.9350],
-      items: [
-        {
-          type: 'poster',
-          title: 'Transthyretin stabilization: A novel approach to Alzheimer’s treatment',
-          event: 'EMIM · 2025'
-        }
-      ]
-    },
-    {
-      city: 'Granada, Spain',
-      coords: [37.1773, -3.5986],
-      items: [
-        {
-          type: 'poster',
-          title: 'Evaluation of Iododiflunisal dose-response on amyloid-β plaques and neuroinflammation in the 5xFAD Alzheimer’s disease mouse model by PET imaging',
-          event: 'IBRO · 2023'
-        }
-      ]
-    },
-    {
-      city: 'Salzburg, Austria',
-      coords: [47.8095, 13.0550],
-      items: [
-        {
-          type: 'poster',
-          title: 'Longitudinal assessment of the dose-response of Iododiflunisal on the formation of amyloid-β plaques in a mouse model of Alzheimer’s disease by PET imaging',
-          event: 'EMIM · 2023'
-        }
-      ]
-    },
-    {
-      city: 'Timișoara, Romania',
-      coords: [45.7489, 21.2087],
-      items: [
-        {
-          type: 'poster',
-          title: 'Motor stimulant effects of DAMGO directly injected in the tail of VTA of rats',
-          event: 'ESBRA · 2021'
-        }
-      ]
-    },
-    {
-      city: 'Honolulu, USA',
-      coords: [21.3069, -157.8583],
-      items: [
-        {
-          type: 'poster',
-          title: 'Evaluation of Iododiflunisal on amyloid-β deposition in 5xFAD Alzheimer’s disease mouse model by PET imaging',
-          event: 'iSRS · 2023'
-        }
-      ]
-    },
-    {
-      city: 'Valencia, Spain',
-      coords: [39.4699, -0.3763],
-      items: [
-        {
-          type: 'poster',
-          title: 'Activation of the mesocorticolimbic system after ethanol administration: Analysis by microdialysis in vivo',
-          event: 'X International Congress of Pharmacy Students · 2020'
-        },
-        {
-          type: 'poster',
-          title: 'Evaluation of N-Acetylcysteine in the prevention of alcohol relapse-like drinking behavior',
-          event: 'IX International Congress of Pharmacy Students · 2019'
-        }
-      ]
+    if (!wasFlipped) {
+      card.classList.add('is-flipped');
     }
-  ];
-
-  function popupHTML(location) {
-    const hasOral = location.items.some(item => item.type === 'oral');
-    const hasPoster = location.items.some(item => item.type === 'poster');
-
-    const tag = hasOral && hasPoster
-      ? 'Presentations'
-      : hasOral
-      ? 'Oral presentation'
-      : 'Poster presentation';
-
-    const listHTML = location.items.map(item => `
-      <div style="margin-top:10px; padding-top:10px; border-top:1px solid #2a3040;">
-        <div style="font-size:12px; margin-bottom:4px; color:#b2b7c5;">
-          ${item.type === 'oral' ? 'Oral presentation' : 'Poster presentation'}
-        </div>
-        <strong>${item.title}</strong><br>
-        <span style="color:#b2b7c5;">${item.event}</span>
-      </div>
-    `).join('');
-
-    return `
-      <div>
-        <div style="font-size:12px; margin-bottom:6px; color:#b2b7c5;">
-          ${tag}
-        </div>
-        <strong>${location.city}</strong>
-        ${listHTML}
-      </div>
-    `;
-  }
-
-  conferences.forEach(location => {
-    const markerType = location.items.some(item => item.type === 'oral') ? 'oral' : 'poster';
-
-    L.marker(location.coords, { icon: markerIcon(markerType) })
-      .addTo(map)
-      .bindPopup(popupHTML(location));
   });
 
-  setTimeout(() => {
-    map.invalidateSize();
-    map.fitBounds(worldBounds);
-    map.setMinZoom(map.getZoom());
-  }, 200);
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.flip-skill-grid')) {
+      const cards = document.querySelectorAll('.flip-skill-card');
+      cards.forEach(card => card.classList.remove('is-flipped'));
+    }
+  });
 });
 </script>
 
