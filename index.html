@@ -252,19 +252,38 @@ color:var(--text);
 }
 
 .custom-marker{
-width:14px;
-height:14px;
-border-radius:50%;
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
 }
 
 .custom-marker.oral{
-background:var(--accent);
-box-shadow:0 0 0 3px rgba(110,231,255,0.16);
+  background:var(--accent);
+  box-shadow:0 0 0 2px rgba(110,231,255,0.14);
 }
 
 .custom-marker.poster{
-background:#ffffff;
-box-shadow:0 0 0 3px rgba(255,255,255,0.10);
+  background:#ffffff;
+  box-shadow:0 0 0 2px rgba(255,255,255,0.08);
+}
+
+.custom-marker:hover{
+  transform:scale(1.25);
+}
+
+.custom-marker.oral:hover{
+  box-shadow:0 0 0 4px rgba(110,231,255,0.25),
+             0 0 12px rgba(110,231,255,0.35);
+}
+
+.custom-marker.poster:hover{
+  box-shadow:0 0 0 4px rgba(255,255,255,0.2),
+             0 0 10px rgba(255,255,255,0.25);
+}
+
+.custom-marker{
+  cursor:pointer;
 }
 
 .footer{
@@ -419,10 +438,17 @@ document.addEventListener('DOMContentLoaded', function () {
     return;
   }
 
-  const map = L.map('conferenceMap', {
-    zoomControl: true,
-    scrollWheelZoom: true
-  }).setView([25, 10], 2);
+const map = L.map('conferenceMap', {
+  zoomControl: true,
+  scrollWheelZoom: true,
+  minZoom: 2,
+  maxZoom: 6
+}).setView([25, 10], 2);
+
+map.setMaxBounds([
+  [-85, -180],
+  [85, 180]
+]);
 
   L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
