@@ -290,6 +290,81 @@ color:var(--text);
   cursor:pointer;
 }
 
+.timeline{
+  position:relative;
+  margin-top:24px;
+  padding-left:30px;
+}
+
+.timeline::before{
+  content:"";
+  position:absolute;
+  left:9px;
+  top:0;
+  bottom:0;
+  width:1px;
+  background:var(--border);
+}
+
+.timeline-item{
+  position:relative;
+  margin-bottom:24px;
+}
+
+.timeline-dot{
+  position:absolute;
+  left:-30px;
+  top:8px;
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 0 3px rgba(110,231,255,0.12);
+}
+
+.timeline-content{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:18px;
+  transition:transform 0.15s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.timeline-content:hover{
+  transform:translateY(-2px);
+  border-color:#34343c;
+  box-shadow:0 8px 24px rgba(0,0,0,0.18);
+}
+
+.timeline-date{
+  font-size:12px;
+  letter-spacing:0.8px;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:6px;
+}
+
+.timeline-content h3{
+  margin:0 0 6px 0;
+  font-size:17px;
+}
+
+.timeline-content p{
+  margin:0 0 10px 0;
+  font-size:14px;
+  color:var(--muted);
+}
+
+.timeline-tag{
+  display:inline-block;
+  font-size:12px;
+  color:var(--text);
+  background:#141418;
+  border:1px solid var(--border);
+  padding:6px 10px;
+  border-radius:999px;
+}
+
 .footer{
 margin-top:70px;
 font-size:13px;
@@ -343,7 +418,7 @@ Investigating disease-modifying strategies for <span class="highlight">Alzheimer
 
 </div>
 
-<h2>Timeline</h2>
+<h2>Research journey</h2>
 
 <div class="timeline">
 
@@ -353,6 +428,7 @@ Investigating disease-modifying strategies for <span class="highlight">Alzheimer
       <div class="timeline-date">2014–2019</div>
       <h3>Pharmacy Degree</h3>
       <p>University of Valencia, Spain.</p>
+      <div class="timeline-tag">Skills unlocked: pharmacology · biomedical foundations · lab training</div>
     </div>
   </div>
 
@@ -362,6 +438,7 @@ Investigating disease-modifying strategies for <span class="highlight">Alzheimer
       <div class="timeline-date">2019–2022</div>
       <h3>Research in Neuropharmacology</h3>
       <p>University of Valencia. Research on the mechanisms of ethanol action in the mesocorticolimbic dopaminergic system using behavioural and neurochemical approaches.</p>
+      <div class="timeline-tag">Skills unlocked: behavioural assays · stereotaxic surgery · microdialysis · jugular cannulation</div>
     </div>
   </div>
 
@@ -371,6 +448,7 @@ Investigating disease-modifying strategies for <span class="highlight">Alzheimer
       <div class="timeline-date">2022–present</div>
       <h3>PhD Candidate in Molecular Imaging</h3>
       <p>CIC biomaGUNE, San Sebastián. Research focused on transthyretin stabilizers as disease-modifying strategies for Alzheimer’s disease using multimodal imaging.</p>
+      <div class="timeline-tag">Skills unlocked: PET · MRI · MRS · radiochemistry · longitudinal studies</div>
     </div>
   </div>
 
@@ -380,6 +458,7 @@ Investigating disease-modifying strategies for <span class="highlight">Alzheimer
       <div class="timeline-date">2025–present</div>
       <h3>Chair of ySMIN</h3>
       <p>Young Spanish Molecular Imaging Network. Coordination of communication, seminars and activities for early-career researchers.</p>
+      <div class="timeline-tag">Skills unlocked: leadership · scientific community building · outreach</div>
     </div>
   </div>
 
