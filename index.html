@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Claudia Espósito | Molecular Imaging</title>
 
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
 <style>
 
 :root{
@@ -42,6 +48,11 @@ letter-spacing:-0.5px;
 h2{
 margin-top:50px;
 font-size:22px;
+}
+
+h3{
+font-size:18px;
+margin-top:0;
 }
 
 p{
@@ -141,163 +152,110 @@ margin-bottom:6px;
 }
 
 .map-section{
-  margin-top: 24px;
+margin-top:24px;
 }
 
 .map-wrapper{
-  position: relative;
-  margin-top: 18px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 20px;
-  overflow: hidden;
+position:relative;
+margin-top:18px;
+background:var(--card);
+border:1px solid var(--border);
+border-radius:14px;
+padding:20px;
+overflow:hidden;
 }
 
 .map-legend{
-  display:flex;
-  gap:18px;
-  flex-wrap:wrap;
-  margin-bottom:14px;
-  font-size:14px;
-  color:var(--muted);
+display:flex;
+gap:18px;
+flex-wrap:wrap;
+margin-bottom:14px;
+font-size:14px;
+color:var(--muted);
 }
 
 .legend-item{
-  display:flex;
-  align-items:center;
-  gap:8px;
+display:flex;
+align-items:center;
+gap:8px;
 }
 
 .legend-dot{
-  width:12px;
-  height:12px;
-  border-radius:50%;
-  display:inline-block;
+width:12px;
+height:12px;
+border-radius:50%;
+display:inline-block;
 }
 
 .legend-dot.oral{
-  background: var(--accent);
+background:var(--accent);
 }
 
 .legend-dot.poster{
-  background: #ffffff;
-  border: 1px solid var(--border);
+background:#ffffff;
+border:1px solid var(--border);
 }
 
-.world-map{
-  position: relative;
-  width: 100%;
-  aspect-ratio: 2 / 1;
-  background-image: url("worldmap.svg");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-  border-radius: 12px;
-  background:
-    radial-gradient(circle at 20% 35%, rgba(255,255,255,0.05) 0 10%, transparent 11%),
-    radial-gradient(circle at 30% 40%, rgba(255,255,255,0.04) 0 9%, transparent 10%),
-    radial-gradient(circle at 48% 32%, rgba(255,255,255,0.05) 0 12%, transparent 13%),
-    radial-gradient(circle at 53% 52%, rgba(255,255,255,0.04) 0 11%, transparent 12%),
-    radial-gradient(circle at 76% 42%, rgba(255,255,255,0.05) 0 14%, transparent 15%),
-    radial-gradient(circle at 83% 68%, rgba(255,255,255,0.04) 0 10%, transparent 11%),
-    linear-gradient(180deg, #101014, #0b0b0d);
-  border: 1px solid var(--border);
+#conferenceMap{
+width:100%;
+height:520px;
+border-radius:12px;
+overflow:hidden;
+border:1px solid var(--border);
 }
 
 .map-note{
-  margin-top: 12px;
-  font-size: 13px;
-  color: var(--muted);
+margin-top:12px;
+font-size:13px;
+color:var(--muted);
 }
 
-.map-point{
-  position:absolute;
-  width:16px;
-  height:16px;
-  border-radius:50%;
-  border:none;
-  cursor:pointer;
-  transform:translate(-50%, -50%);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+.leaflet-popup-content-wrapper{
+background:#111114;
+color:var(--text);
+border-radius:12px;
 }
 
-.map-point:hover{
-  transform:translate(-50%, -50%) scale(1.15);
+.leaflet-popup-tip{
+background:#111114;
 }
 
-.map-point.oral{
-  background: var(--accent);
-  box-shadow: 0 0 0 4px rgba(110, 231, 255, 0.14);
+.leaflet-popup-content{
+color:var(--muted);
+font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+line-height:1.5;
 }
 
-.map-point.poster{
-  background: #ffffff;
-  box-shadow: 0 0 0 4px rgba(255,255,255,0.08);
+.leaflet-popup-content strong{
+color:var(--text);
 }
 
-.map-popup{
-  position:absolute;
-  min-width: 240px;
-  max-width: 320px;
-  background: #111114;
-  color: var(--text);
-  border:1px solid var(--border);
-  border-radius: 12px;
-  padding: 14px;
-  box-shadow: 0 16px 40px rgba(0,0,0,0.35);
-  display:none;
-  z-index: 5;
+.custom-marker{
+width:16px;
+height:16px;
+border-radius:50%;
 }
 
-.map-popup.active{
-  display:block;
+.custom-marker.oral{
+background:var(--accent);
+box-shadow:0 0 0 4px rgba(110,231,255,0.15);
 }
 
-.map-popup h4{
-  margin:0 0 6px 0;
-  font-size:15px;
-}
-
-.map-popup p{
-  margin:0;
-  font-size:14px;
-  color:var(--muted);
-}
-
-.map-popup .popup-type{
-  display:inline-block;
-  margin-bottom:8px;
-  font-size:12px;
-  padding:4px 8px;
-  border-radius:999px;
-  background:#1c1c22;
-  color:var(--text);
-}
-
-.map-popup .popup-close{
-  position:absolute;
-  top:8px;
-  right:10px;
-  background:none;
-  border:none;
-  color:var(--muted);
-  cursor:pointer;
-  font-size:16px;
-}
-
-@media (max-width: 700px){
-  .map-popup{
-    min-width: 200px;
-    max-width: 240px;
-  }
+.custom-marker.poster{
+background:#ffffff;
+box-shadow:0 0 0 4px rgba(255,255,255,0.08);
 }
 
 .footer{
 margin-top:70px;
 font-size:13px;
 color:#6b7280;
+}
+
+@media (max-width:700px){
+#conferenceMap{
+height:420px;
+}
 }
 
 </style>
@@ -336,70 +294,67 @@ PhD candidate in Molecular Imaging · CIC biomaGUNE
 <div class="gamelabel">Current mission</div>
 
 <p>
-Investigating disease‑modifying strategies for <span class="highlight">Alzheimer’s disease</span> using multimodal molecular imaging. My work combines PET, MRI and MRS with behavioural and biochemical analyses in preclinical models.
+Investigating disease-modifying strategies for <span class="highlight">Alzheimer’s disease</span> using multimodal molecular imaging. My work combines PET, MRI and MRS with behavioural and biochemical analyses in preclinical models.
 </p>
 
 </div>
-
 
 <h2>Skill tree</h2>
 
 <div class="skillgrid">
 
 <div class="skill">
-<strong>Molecular imaging</strong><br>
-PET imaging of amyloid pathology and neuroinflammation
-</div>
-
-<div class="skill">
-<strong>Multimodal neuroimaging</strong><br>
-MRI and MRS for structural and metabolic brain analysis
+<strong>Multimodal molecular imaging</strong><br>
+Design and analysis of longitudinal preclinical imaging studies using PET, MRI and MRS to assess amyloid pathology, neuroinflammation, brain structure and metabolism.
 </div>
 
 <div class="skill">
 <strong>Radiochemistry</strong><br>
-Radiotracer synthesis, QC and dose preparation
+Radiotracer synthesis, quality control, dose preparation and intravenous administration for preclinical imaging studies.
 </div>
 
 <div class="skill">
-<strong>Behavioural assays</strong><br>
-Barnes Maze and cognitive testing
+<strong>Behavioural neuroscience</strong><br>
+Design and execution of behavioural assays to evaluate learning and memory in rodent models, including Barnes Maze.
 </div>
 
 <div class="skill">
-<strong>Ex vivo analysis</strong><br>
-IHC, ELISA, flow cytometry and cytokine panels
+<strong>Biochemical and histological analysis</strong><br>
+Ex vivo validation using immunohistochemistry, ELISA, flow cytometry and multiplex cytokine assays.
+</div>
+
+<div class="skill">
+<strong>Experimental surgery</strong><br>
+Rodent surgical procedures including stereotaxic surgery, intracranial administration, jugular vein cannulation and microdialysis techniques.
 </div>
 
 <div class="skill">
 <strong>Science communication</strong><br>
-Data visualisation and outreach
+Scientific outreach, conference presentations and development of clear data visualisations for effective research communication.
 </div>
 
 </div>
-
 
 <h2>Research log</h2>
 
 <div class="card">
 
 <div class="pub">
-<strong>Esposito‑Zapero C. et al.</strong>
-The rostromedial tegmental nucleus RMTg is not a critical site for ethanol‑induced motor activation in rats. Psychopharmacology (2023)
+<strong>Esposito-Zapero C. et al.</strong>
+The rostromedial tegmental nucleus RMTg is not a critical site for ethanol-induced motor activation in rats. <em>Psychopharmacology</em> (2023)
 </div>
 
 <div class="pub">
-<strong>Fernández‑Rodríguez S. et al.</strong>
-N‑Acetylcysteine normalizes brain oxidative stress and neuroinflammation after ethanol abstinence. Psychopharmacology (2023)
+<strong>Fernández-Rodríguez S. et al.</strong>
+N-Acetylcysteine normalizes brain oxidative stress and neuroinflammation after ethanol abstinence. <em>Psychopharmacology</em> (2023)
 </div>
 
 <div class="pub">
-<strong>Fernández‑Rodríguez S. et al.</strong>
-The Effects of N‑Acetylcysteine on the Rat Mesocorticolimbic Pathway. Pharmaceuticals (2021)
+<strong>Fernández-Rodríguez S. et al.</strong>
+The Effects of N-Acetylcysteine on the Rat Mesocorticolimbic Pathway. <em>Pharmaceuticals</em> (2021)
 </div>
 
 </div>
-
 
 <h2>Conference map</h2>
 
@@ -411,109 +366,10 @@ The Effects of N‑Acetylcysteine on the Rat Mesocorticolimbic Pathway. Pharmace
       <div class="legend-item"><span class="legend-dot poster"></span> Poster presentations</div>
     </div>
 
-    <div class="world-map" id="worldMap">
-
-      <button class="map-point oral" style="left:46%; top:31%;" data-popup="popup-ss-oral" aria-label="San Sebastián oral presentation"></button>
-      <button class="map-point poster" style="left:45.5%; top:31.5%;" data-popup="popup-bilbao-poster" aria-label="Bilbao poster presentation"></button>
-      <button class="map-point oral" style="left:45.2%; top:33.4%;" data-popup="popup-madrid-oral" aria-label="Madrid oral presentation"></button>
-      <button class="map-point oral" style="left:44.1%; top:31.8%;" data-popup="popup-porto-oral" aria-label="Porto oral presentation"></button>
-      <button class="map-point oral" style="left:43.3%; top:31.1%;" data-popup="popup-santiago-oral" aria-label="Santiago de Compostela oral presentation"></button>
-      <button class="map-point poster" style="left:45.8%; top:34.4%;" data-popup="popup-granada-poster" aria-label="Granada poster presentation"></button>
-      <button class="map-point poster" style="left:49.4%; top:29.7%;" data-popup="popup-salzburg-poster" aria-label="Salzburg poster presentation"></button>
-      <button class="map-point poster" style="left:52.2%; top:30%;" data-popup="popup-timisoara-poster" aria-label="Timisoara poster presentation"></button>
-      <button class="map-point oral" style="left:84.5%; top:73%;" data-popup="popup-goldcoast-oral" aria-label="Gold Coast oral presentation"></button>
-      <button class="map-point poster" style="left:15.5%; top:42.5%;" data-popup="popup-honolulu-poster" aria-label="Honolulu poster presentation"></button>
-      <button class="map-point poster" style="left:44.8%; top:35.7%;" data-popup="popup-valencia-poster-1" aria-label="Valencia poster presentation"></button>
-      <button class="map-point poster" style="left:44.9%; top:35.2%;" data-popup="popup-valencia-poster-2" aria-label="Valencia poster presentation"></button>
-
-      <div class="map-popup" id="popup-ss-oral" style="left:48%; top:20%;">
-        <button class="popup-close" aria-label="Close">×</button>
-        <div class="popup-type">Oral presentation</div>
-        <h4>San Sebastián, Spain</h4>
-        <p><strong>Longitudinal Insights into Iododiflunisal as a modifying drug for Alzheimer’s Disease</strong><br>ySMIN · 2024</p>
-      </div>
-
-      <div class="map-popup" id="popup-bilbao-poster" style="left:48%; top:44%;">
-        <button class="popup-close" aria-label="Close">×</button>
-        <div class="popup-type">Poster presentation</div>
-        <h4>Bilbao, Spain</h4>
-        <p><strong>Transthyretin stabilization: A novel approach to Alzheimer’s treatment</strong><br>EMIM · 2025</p>
-      </div>
-
-      <div class="map-popup" id="popup-madrid-oral" style="left:48%; top:50%;">
-        <button class="popup-close" aria-label="Close">×</button>
-        <div class="popup-type">Oral presentation</div>
-        <h4>Madrid, Spain</h4>
-        <p><strong>Transthyretin stabilization: A novel approach to Alzheimer’s treatment</strong><br>ySMIN · 2025</p>
-      </div>
-
-      <div class="map-popup" id="popup-porto-oral" style="left:40%; top:43%;">
-        <button class="popup-close" aria-label="Close">×</button>
-        <div class="popup-type">Oral presentation</div>
-        <h4>Porto, Portugal</h4>
-        <p><strong>Longitudinal Insights into Iododiflunisal as a modifying drug for Alzheimer’s Disease</strong><br>EMIM · 2024</p>
-      </div>
-
-      <div class="map-popup" id="popup-santiago-oral" style="left:35%; top:20%;">
-        <button class="popup-close" aria-label="Close">×</button>
-        <div class="popup-type">Oral presentation</div>
-        <h4>Santiago de Compostela, Spain</h4>
-        <p><strong>A longitudinal in vivo molecular imaging study: Evaluation of the dose-response of Iododiflunisal on amyloid-β plaque formation in a mouse model of Alzheimer’s disease</strong><br>ySMIN · 2023</p>
-      </div>
-
-      <div class="map-popup" id="popup-granada-poster" style="left:49%; top:56%;">
-        <button class="popup-close" aria-label="Close">×</button>
-        <div class="popup-type">Poster presentation</div>
-        <h4>Granada, Spain</h4>
-        <p><strong>Evaluation of Iododiflunisal dose-response on amyloid-β plaques and neuroinflammation in the 5xFAD Alzheimer’s disease mouse model by PET imaging</strong><br>IBRO · 2023</p>
-      </div>
-
-      <div class="map-popup" id="popup-salzburg-poster" style="left:53%; top:18%;">
-        <button class="popup-close" aria-label="Close">×</button>
-        <div class="popup-type">Poster presentation</div>
-        <h4>Salzburg, Austria</h4>
-        <p><strong>Longitudinal assessment of the dose-response of Iododiflunisal on the formation of amyloid-β plaques in a mouse model of Alzheimer’s disease by PET imaging</strong><br>EMIM · 2023</p>
-      </div>
-
-      <div class="map-popup" id="popup-timisoara-poster" style="left:56%; top:39%;">
-        <button class="popup-close" aria-label="Close">×</button>
-        <div class="popup-type">Poster presentation</div>
-        <h4>Timișoara, Romania</h4>
-        <p><strong>Motor stimulant effects of DAMGO directly injected in the tail of VTA of rats</strong><br>ESBRA · 2021</p>
-      </div>
-
-      <div class="map-popup" id="popup-goldcoast-oral" style="left:61%; top:48%;">
-        <button class="popup-close" aria-label="Close">×</button>
-        <div class="popup-type">Oral presentation</div>
-        <h4>Gold Coast, Australia</h4>
-        <p><strong>Modulating Alzheimer’s Pathology with Transthyretin Stabilizers: PET Imaging Insights</strong><br>iSRS · 2025</p>
-      </div>
-
-      <div class="map-popup" id="popup-honolulu-poster" style="left:20%; top:20%;">
-        <button class="popup-close" aria-label="Close">×</button>
-        <div class="popup-type">Poster presentation</div>
-        <h4>Honolulu, USA</h4>
-        <p><strong>Evaluation of Iododiflunisal on amyloid-β deposition in 5xFAD Alzheimer’s disease mouse model by PET imaging</strong><br>iSRS · 2023</p>
-      </div>
-
-      <div class="map-popup" id="popup-valencia-poster-1" style="left:49%; top:62%;">
-        <button class="popup-close" aria-label="Close">×</button>
-        <div class="popup-type">Poster presentation</div>
-        <h4>Valencia, Spain</h4>
-        <p><strong>Activation of the mesocorticolimbic system after ethanol administration: Analysis by microdialysis in vivo</strong><br>X International Congress of Pharmacy students · 2020</p>
-      </div>
-
-      <div class="map-popup" id="popup-valencia-poster-2" style="left:49%; top:70%;">
-        <button class="popup-close" aria-label="Close">×</button>
-        <div class="popup-type">Poster presentation</div>
-        <h4>Valencia, Spain</h4>
-        <p><strong>Evaluation of N-Acetylcysteine in the prevention of alcohol relapse-like drinking behavior</strong><br>IX International Congress of Pharmacy students · 2019</p>
-      </div>
-
-    </div>
+    <div id="conferenceMap"></div>
 
     <div class="map-note">
-      Click on a city to view a conference presentation. Blue dots are oral presentations, white dots are posters.
+      Zoom and click on each marker to explore conference presentations.
     </div>
   </div>
 </div>
@@ -521,15 +377,12 @@ The Effects of N‑Acetylcysteine on the Rat Mesocorticolimbic Pathway. Pharmace
 <h2>Achievements unlocked</h2>
 
 <div class="card">
-
 <p>
 🏆 Best Poster Award — EMIM 2025<br>
 🏆 Best Talk Award — PhDay 2024 & 2025<br>
 🏆 Travel Grant — iSRS 2025
 </p>
-
 </div>
-
 
 <div class="footer">
 Research profile v1.0 · Built with caffeine, curiosity and a slightly unhealthy number of brain scans
@@ -538,38 +391,126 @@ Research profile v1.0 · Built with caffeine, curiosity and a slightly unhealthy
 </div>
 
 <script>
-  const mapPoints = document.querySelectorAll('.map-point');
-  const popups = document.querySelectorAll('.map-popup');
-  const closeButtons = document.querySelectorAll('.popup-close');
+const map = L.map('conferenceMap', {
+  zoomControl: true,
+  scrollWheelZoom: true
+}).setView([25, 10], 2);
 
-  function closeAllPopups() {
-    popups.forEach(popup => popup.classList.remove('active'));
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+function markerIcon(type){
+  return L.divIcon({
+    className:'',
+    html:`<div class="custom-marker ${type}"></div>`,
+    iconSize:[16,16],
+    iconAnchor:[8,8],
+    popupAnchor:[0,-8]
+  });
+}
+
+const conferences = [
+  {
+    type:'oral',
+    coords:[-28.0167,153.4000],
+    title:'Modulating Alzheimer’s Pathology with Transthyretin Stabilizers: PET Imaging Insights',
+    event:'iSRS · 2025',
+    city:'Gold Coast, Australia'
+  },
+  {
+    type:'oral',
+    coords:[40.4168,-3.7038],
+    title:'Transthyretin stabilization: A novel approach to Alzheimer’s treatment',
+    event:'ySMIN · 2025',
+    city:'Madrid, Spain'
+  },
+  {
+    type:'oral',
+    coords:[41.1579,-8.6291],
+    title:'Longitudinal Insights into Iododiflunisal as a modifying drug for Alzheimer’s Disease',
+    event:'EMIM · 2024',
+    city:'Porto, Portugal'
+  },
+  {
+    type:'oral',
+    coords:[43.3183,-1.9812],
+    title:'Longitudinal Insights into Iododiflunisal as a modifying drug for Alzheimer’s Disease',
+    event:'ySMIN · 2024',
+    city:'San Sebastián, Spain'
+  },
+  {
+    type:'oral',
+    coords:[42.8782,-8.5448],
+    title:'A longitudinal in vivo molecular imaging study: Evaluation of the dose-response of Iododiflunisal on amyloid-β plaque formation in a mouse model of Alzheimer’s disease',
+    event:'ySMIN · 2023',
+    city:'Santiago de Compostela, Spain'
+  },
+  {
+    type:'poster',
+    coords:[43.2630,-2.9350],
+    title:'Transthyretin stabilization: A novel approach to Alzheimer’s treatment',
+    event:'EMIM · 2025',
+    city:'Bilbao, Spain'
+  },
+  {
+    type:'poster',
+    coords:[37.1773,-3.5986],
+    title:'Evaluation of Iododiflunisal dose-response on amyloid-β plaques and neuroinflammation in the 5xFAD Alzheimer’s disease mouse model by PET imaging',
+    event:'IBRO · 2023',
+    city:'Granada, Spain'
+  },
+  {
+    type:'poster',
+    coords:[47.8095,13.0550],
+    title:'Longitudinal assessment of the dose-response of Iododiflunisal on the formation of amyloid-β plaques in a mouse model of Alzheimer’s disease by PET imaging',
+    event:'EMIM · 2023',
+    city:'Salzburg, Austria'
+  },
+  {
+    type:'poster',
+    coords:[45.7489,21.2087],
+    title:'Motor stimulant effects of DAMGO directly injected in the tail of VTA of rats',
+    event:'ESBRA · 2021',
+    city:'Timișoara, Romania'
+  },
+  {
+    type:'poster',
+    coords:[21.3069,-157.8583],
+    title:'Evaluation of Iododiflunisal on amyloid-β deposition in 5xFAD Alzheimer’s disease mouse model by PET imaging',
+    event:'iSRS · 2023',
+    city:'Honolulu, USA'
+  },
+  {
+    type:'poster',
+    coords:[39.4699,-0.3763],
+    title:'Activation of the mesocorticolimbic system after ethanol administration: Analysis by microdialysis in vivo',
+    event:'X International Congress of Pharmacy Students · 2020',
+    city:'Valencia, Spain'
+  },
+  {
+    type:'poster',
+    coords:[39.4699,-0.3763],
+    title:'Evaluation of N-Acetylcysteine in the prevention of alcohol relapse-like drinking behavior',
+    event:'IX International Congress of Pharmacy Students · 2019',
+    city:'Valencia, Spain'
   }
+];
 
-  mapPoints.forEach(point => {
-    point.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const popupId = point.getAttribute('data-popup');
-      const popup = document.getElementById(popupId);
-
-      const wasOpen = popup.classList.contains('active');
-      closeAllPopups();
-      if (!wasOpen) {
-        popup.classList.add('active');
-      }
-    });
-  });
-
-  closeButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
-      e.stopPropagation();
-      closeAllPopups();
-    });
-  });
-
-  document.addEventListener('click', () => {
-    closeAllPopups();
-  });
+conferences.forEach(item => {
+  L.marker(item.coords, { icon: markerIcon(item.type) })
+    .addTo(map)
+    .bindPopup(`
+      <div>
+        <div style="font-size:12px; margin-bottom:6px; color:#a1a1aa;">
+          ${item.type === 'oral' ? 'Oral presentation' : 'Poster presentation'}
+        </div>
+        <strong>${item.city}</strong><br>
+        <strong>${item.title}</strong><br>
+        ${item.event}
+      </div>
+    `);
+});
 </script>
 
 </body>
