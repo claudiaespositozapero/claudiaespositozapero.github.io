@@ -451,20 +451,17 @@ const map = L.map('conferenceMap', {
 });
 
 map.fitBounds(worldBounds);
+map.setMinZoom(map.getZoom());
 
-map.setMaxBounds(worldBounds);
-
-map.setMaxBounds([
-  [-85, -180],
-  [85, 180]
-]);
-
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
-  attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
-  subdomains: 'abcd',
-  maxZoom: 20,
-  noWrap: true
-}).addTo(map);
+L.tileLayer(
+  'https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png',
+  {
+    attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+    subdomains: 'abcd',
+    maxZoom: 20,
+    noWrap: true
+  }
+).addTo(map);
 
   function markerIcon(type) {
     return L.divIcon({
